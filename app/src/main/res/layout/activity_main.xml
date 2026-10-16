@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212"
+    tools:context=".MainActivity">
+
+    <!-- ScrollView para scroll vertical sin cortar en pantallas pequeñas -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <!-- Botón de Ayuda (?) -->
+            <TextView
+                android:id="@+id/btnHelp"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:background="@drawable/bg_circle_dark"
+                android:gravity="center"
+                android:text="?"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Saludo al usuario -->
+            <TextView
+                android:id="@+id/tvWelcome"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Welcome, -"
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/btnHelp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnHelp" />
+
+            <!-- SECCIÓN 1: Pokemon Ranking -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardRanking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:cardBackgroundColor="#1A1921"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:layout_constraintTop_toBottomOf="@id/tvWelcome">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pokemon Ranking"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <!-- Item Ranking 1 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/bg_rounded_item"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:layout_width="28dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="1"
+                            android:textColor="#FFC107"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/imgRank1"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:layout_marginStart="8dp"
+                            android:contentDescription="Pokemon Top 1" />
+
+                        <TextView
+                            android:id="@+id/tvRank1Name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="-"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Item Ranking 2 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_rounded_item"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:layout_width="28dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="2"
+                            android:textColor="#B0BEC5"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/imgRank2"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:layout_marginStart="8dp"
+                            android:contentDescription="Pokemon Top 2" />
+
+                        <TextView
+                            android:id="@+id/tvRank2Name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="-"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Botón View More -->
+                    <TextView
+                        android:id="@+id/btnViewMoreRanking"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/bg_rounded_button"
+                        android:gravity="center"
+                        android:paddingVertical="8dp"
+                        android:text="View More..."
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- SECCIÓN 2: Pokemon Champions -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardChampions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardBackgroundColor="#1A1921"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:layout_constraintTop_toBottomOf="@id/cardRanking">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Header Campeones -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Pokemon Champions"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/imgChampionsLogo"
+                            android:layout_width="90dp"
+                            android:layout_height="32dp"
+                            android:contentDescription="Logo Champions"
+                            android:scaleType="fitCenter" />
+                    </LinearLayout>
+
+                    <!-- Equipo 1 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/bg_rounded_item"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:id="@+id/tvTeam1User"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-"
+                            android:textColor="#E0E0E0"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView android:id="@+id/t1_p1" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="2dp" />
+                            <ImageView android:id="@+id/t1_p2" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="2dp" />
+                            <ImageView android:id="@+id/t1_p3" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="2dp" />
+                            <ImageView android:id="@+id/t1_p4" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="2dp" />
+                            <ImageView android:id="@+id/t1_p5" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="2dp" />
+                            <ImageView android:id="@+id/t1_p6" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="2dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Equipo 2 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_rounded_item"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:id="@+id/tvTeam2User"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-"
+                            android:textColor="#E0E0E0"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView android:id="@+id/t2_p1" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="2dp" />
+                            <ImageView android:id="@+id/t2_p2" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="2dp" />
+                            <ImageView android:id="@+id/t2_p3" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="2dp" />
+                            <ImageView android:id="@+id/t2_p4" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="2dp" />
+                            <ImageView android:id="@+id/t2_p5" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="2dp" />
+                            <ImageView android:id="@+id/t2_p6" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="2dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Equipo 3 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_rounded_item"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:id="@+id/tvTeam3User"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-"
+                            android:textColor="#E0E0E0"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView android:id="@+id/t3_p1" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="2dp" />
+                            <ImageView android:id="@+id/t3_p2" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="2dp" />
+                            <ImageView android:id="@+id/t3_p3" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="2dp" />
+                            <ImageView android:id="@+id/t3_p4" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="2dp" />
+                            <ImageView android:id="@+id/t3_p5" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="2dp" />
+                            <ImageView android:id="@+id/t3_p6" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="2dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Botón See More Meta Teams -->
+                    <TextView
+                        android:id="@+id/btnViewMoreTeams"
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/bg_rounded_button"
+                        android:gravity="center"
+                        android:paddingVertical="8dp"
+                        android:text="See More Meta Teams..."
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation Bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1A1921"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
