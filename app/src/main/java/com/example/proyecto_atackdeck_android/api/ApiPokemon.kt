@@ -11,4 +11,7 @@ interface ApiPokemon {
 
     @GET("pokemon/{id}")
     suspend fun getPokemonByNumber(@Path("id") id: Int): Response<Pokemon>
+
+    @GET("pokemon/{id}")
+    suspend fun getPokemonDetail(@Path("id") id: Int): Response<Pokemon>
 }

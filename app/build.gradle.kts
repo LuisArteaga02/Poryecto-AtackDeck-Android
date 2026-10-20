@@ -5,7 +5,7 @@ plugins {
 android {
     namespace = "com.example.proyecto_atackdeck_android"
     compileSdk {
-        version = release(36)
+        version = release(37)
     }
 
     defaultConfig {
