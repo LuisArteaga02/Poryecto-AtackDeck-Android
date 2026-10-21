@@ -12,7 +12,20 @@
           "package_name": "com.example.proyecto_atackdeck_android"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "181241857130-bbcqelcv7kg76je8e3am20vlj931papl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.proyecto_atackdeck_android",
+            "certificate_hash": "52e39c95c041f42b83d823a7cd034f386a541779"
+          }
+        },
+        {
+          "client_id": "181241857130-h751r1910bfbkvi1ddj3tva1mttknoi2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDiMOzTF1UtcWmCacGPyC8FBZt2iNOSZpE"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "181241857130-h751r1910bfbkvi1ddj3tva1mttknoi2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

@@ -42,8 +42,11 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.googleid)
     implementation(libs.material)
     implementation("com.github.bumptech.glide:glide:5.0.9")
     implementation("com.squareup.retrofit2:retrofit:3.0.0")
@@ -56,4 +59,5 @@ dependencies {
     implementation("com.google.firebase:firebase-database")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
     implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.android.gms:play-services-auth:21.0.0")
 }

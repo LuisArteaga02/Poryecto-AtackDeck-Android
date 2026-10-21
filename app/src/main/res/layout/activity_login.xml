@@ -53,4 +53,22 @@
         android:backgroundTint="#262530"
         android:layout_marginTop="8dp"
         android:text="Crear Cuenta Nueva" />
+    <!-- Debajo de tu btnRegister, agrega esto: -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="O ingresa con"
+        android:textColor="#9CA3AF"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        android:id="@+id/btnGoogleLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFFFFF"
+        android:textColor="#121212"
+        android:text="Continuar con Google"
+         />
 </LinearLayout>

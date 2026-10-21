@@ -40,7 +40,7 @@ class UserDeckActivity : AppCompatActivity() {
             finish()
             return // Detiene la ejecución del resto del onCreate
         }
-        
+
         binding.btnEditProfile.setOnClickListener {
             val intent = Intent(this@UserDeckActivity, EditProfileActivity::class.java)
             startActivity(intent)
