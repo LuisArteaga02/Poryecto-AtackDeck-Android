@@ -19,25 +19,133 @@ class PokemonDetailActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_POKEMON_ID = "pokemon_id" // clave para recibir el ID
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPokemonDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // Obtener el ID enviado desde otra Activity (default = 1 = Bulbasaur)
-        val pokemonId = intent.getIntExtra(EXTRA_POKEMON_ID, 1)
-
-        // Botón volver
         binding.btnBack.setOnClickListener { finish() }
 
-        // Cargar datos
-        loadPokemon(pokemonId)
-    }
+        val pokemonName = intent.getStringExtra("EXTRA_POKEMON_NAME")
+        val pokemonId = intent.getIntExtra(EXTRA_POKEMON_ID, -1)
 
+        if (!pokemonName.isNullOrEmpty()) {
+
+            loadPokemonByName(pokemonName)
+
+        } else if (pokemonId != -1) {
+
+            loadPokemon(pokemonId)
+
+        } else {
+
+            Toast.makeText(this, "Error: Pokémon no recibido", Toast.LENGTH_SHORT).show()
+            finish()
+        }
+    }
+    private fun loadPokemonByName(name: String) {
+
+        binding.progressBar.visibility = View.VISIBLE
+
+        lifecycleScope.launch {
+            try {
+
+                val response = RetrofitInstance.apiInterface.getPokemonByName(name)
+
+                if (response.isSuccessful && response.body() != null) {
+                    val pokemon = response.body()!!
+
+
+
+                    binding.tvId.text = "#${pokemon.id.toString().padStart(3, '0')}"
+                    // Capitalizar la primera letra del nombre
+                    binding.tvName.text = pokemon.name.replaceFirstChar { it.uppercase() }
+
+                    val heightM = pokemon.height / 10.0
+                    binding.tvHeight.text = "${"%.1f".format(heightM)} m"
+
+                    val weightKg = pokemon.weight / 10.0
+                    binding.tvWeight.text = "${"%.1f".format(weightKg)} kg"
+
+                    // Tipos y Colores
+                    val tipos = pokemon.types.sortedBy { it.slot }
+                    val tipoPrincipal = tipos.getOrNull(0)?.type?.name ?: ""
+                    binding.tvType1.text = tipoPrincipal
+                    binding.tvType1.visibility = if (tipos.isNotEmpty()) View.VISIBLE else View.GONE
+
+                    val type2 = tipos.getOrNull(1)?.type?.name
+                    if (type2 != null) {
+                        binding.tvType2.text = type2
+                        binding.tvType2.visibility = View.VISIBLE
+                    } else {
+                        binding.tvType2.visibility = View.GONE
+                    }
+
+                    if (tipoPrincipal.isNotEmpty()) {
+                        val colorPokemon = getColorByType(tipoPrincipal)
+                        binding.viewPokemonBackground.backgroundTintList = ColorStateList.valueOf(colorPokemon)
+
+                    }
+
+                    // Habilidades
+                    val habilidades = pokemon.abilities
+                    binding.tvAbility1.text = habilidades.getOrNull(0)?.ability?.name ?: "N/A"
+
+                    val ability2 = habilidades.getOrNull(1)?.ability?.name
+                    if (ability2 != null) {
+                        binding.tvAbility2.text = ability2
+                        binding.tvAbility2.visibility = View.VISIBLE
+                    } else {
+                        binding.tvAbility2.visibility = View.GONE
+                    }
+
+                    // Stats
+                    val statsList = pokemon.stats
+                    binding.tvHp.text = statsList.find { it.stat.name == "hp" }?.base_stat.toString()
+                    binding.tvAttack.text = statsList.find { it.stat.name == "attack" }?.base_stat.toString()
+                    binding.tvDefense.text = statsList.find { it.stat.name == "defense" }?.base_stat.toString()
+                    binding.tvSpAttack.text = statsList.find { it.stat.name == "special-attack" }?.base_stat.toString()
+                    binding.tvSpDefense.text = statsList.find { it.stat.name == "special-defense" }?.base_stat.toString()
+                    binding.tvSpeed.text = statsList.find { it.stat.name == "speed" }?.base_stat.toString()
+
+                    // Sprite con Glide
+                    val id = pokemon.id
+                    val spriteUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png"
+
+                    if (spriteUrl.isNotEmpty()) {
+                        Glide.with(this@PokemonDetailActivity)
+                            .load(spriteUrl)
+                            .into(binding.imgSprite)
+                    }
+
+
+
+                } else {
+
+                    if (response.code() == 404) {
+                        Toast.makeText(this@PokemonDetailActivity,
+                            "Pokémon '$name' no encontrado", Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(this@PokemonDetailActivity,
+                            "Error: ${response.code()}", Toast.LENGTH_SHORT).show()
+                    }
+
+                    finish()
+                }
+
+            } catch (e: Exception) {
+                Toast.makeText(this@PokemonDetailActivity,
+                    "Error de red: ${e.message}", Toast.LENGTH_SHORT).show()
+                finish()
+            } finally {
+                binding.progressBar.visibility = View.GONE
+            }
+        }
+    }
     private fun loadPokemon(id: Int) {
-        // Mostrar cargando
+
         binding.progressBar.visibility = View.VISIBLE
 
         lifecycleScope.launch {
@@ -112,8 +220,10 @@ class PokemonDetailActivity : AppCompatActivity() {
 
 
                     // Sprite con Glide
-                    val spriteUrl = pokemon.sprites.frontDefault
-                    if (!spriteUrl.isNullOrEmpty()) {
+                    val id = pokemon.id
+                    val spriteUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png"
+
+                    if (spriteUrl.isNotEmpty()) {
                         Glide.with(this@PokemonDetailActivity)
                             .load(spriteUrl)
                             .into(binding.imgSprite)

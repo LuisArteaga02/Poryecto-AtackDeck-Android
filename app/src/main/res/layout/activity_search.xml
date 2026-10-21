@@ -71,10 +71,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="12dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
-        app:layout_constraintTop_toBottomOf="@id/tvExplorarTitle">
+        app:layout_constraintTop_toBottomOf="@+id/tvExplorarTitle">
 
         <GridLayout
             android:layout_width="match_parent"
@@ -87,6 +85,7 @@
 
             <!-- Generación 1 -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardGen1"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_columnWeight="1"
@@ -111,8 +110,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
                         android:text="1"
                         android:textColor="#1F2937"
                         android:textSize="48sp"
@@ -122,6 +121,7 @@
 
             <!-- Generación 2 -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardGen2"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_columnWeight="1"
@@ -146,8 +146,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
                         android:text="2"
                         android:textColor="#1F2937"
                         android:textSize="48sp"
@@ -157,6 +157,7 @@
 
             <!-- Generación 3 -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardGen3"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_columnWeight="1"
@@ -181,8 +182,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
                         android:text="3"
                         android:textColor="#FBBF24"
                         android:textSize="48sp"
@@ -192,6 +193,7 @@
 
             <!-- Generación 4 -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardGen4"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_columnWeight="1"
@@ -216,8 +218,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
                         android:text="4"
                         android:textColor="#FBBF24"
                         android:textSize="48sp"
@@ -227,6 +229,7 @@
 
             <!-- Generación 5 -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardGen5"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_columnWeight="1"
@@ -251,8 +254,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
                         android:text="5"
                         android:textColor="#FBBF24"
                         android:textSize="48sp"
@@ -262,6 +265,7 @@
 
             <!-- Generación 6 -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardGen6"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_columnWeight="1"
@@ -286,8 +290,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
                         android:text="6"
                         android:textColor="#FBBF24"
                         android:textSize="48sp"
@@ -297,6 +301,7 @@
 
             <!-- Generación 7 -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardGen7"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_columnWeight="1"
@@ -321,8 +326,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
                         android:text="7"
                         android:textColor="#FBBF24"
                         android:textSize="48sp"
@@ -332,6 +337,7 @@
 
             <!-- Generación 8 -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardGen8"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_columnWeight="1"
@@ -356,8 +362,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
                         android:text="8"
                         android:textColor="#FBBF24"
                         android:textSize="48sp"
@@ -367,6 +373,7 @@
 
             <!-- Generación 9 -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardGen9"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_columnWeight="1"
@@ -391,8 +398,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
                         android:text="9"
                         android:textColor="#FBBF24"
                         android:textSize="48sp"
@@ -404,14 +411,11 @@
     </ScrollView>
 
     <!-- Bottom Navigation Bar -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigation"
+    <include
+        android:id="@+id/includedBottomNav"
+        layout="@layout/layout_bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#1A1921"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

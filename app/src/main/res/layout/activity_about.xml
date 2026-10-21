@@ -175,14 +175,11 @@
     </ScrollView>
 
     <!-- Bottom Navigation Bar -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigation"
+    <include
+        android:id="@+id/includedBottomNav"
+        layout="@layout/layout_bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#1A1921"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

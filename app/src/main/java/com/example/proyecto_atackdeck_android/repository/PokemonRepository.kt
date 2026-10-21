@@ -25,13 +25,18 @@ class PokemonRepository {
     }
 
 
-    suspend fun getSavedPokemons(): List<SavedPokemon> {
+    suspend fun getSavedPokemons(limite: Long? = null): List<SavedPokemon> {
         return try {
-            val snapshot = pokemonCollection
-                .orderBy("ranking")
-                
-                .get()
-                .await()
+            // Empezamos armando la consulta básica
+            var query = pokemonCollection.orderBy("ranking")
+
+            // Si la pantalla nos pide un límite, se lo agregamos a la consulta
+            if (limite != null) {
+                query = query.limit(limite)
+            }
+
+            // Ejecutamos la consulta
+            val snapshot = query.get().await()
 
             snapshot.documents.mapNotNull { document ->
                 document.toObject(SavedPokemon::class.java)

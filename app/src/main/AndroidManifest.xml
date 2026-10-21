@@ -27,6 +27,12 @@
             android:name=".PokemonDetailActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".MetaPokemonActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".GenerationListActivity" />
     </application>
 
 </manifest>

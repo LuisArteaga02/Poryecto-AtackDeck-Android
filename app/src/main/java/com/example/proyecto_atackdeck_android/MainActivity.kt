@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proyecto_atackdeck_android.databinding.ActivityMainBinding
 import com.example.proyecto_atackdeck_android.repository.PokemonRepository
+import com.example.proyecto_atackdeck_android.BottomNavHelper
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val repository = PokemonRepository() // Conexión a Firebase
     private lateinit var rankingAdapter: RankingAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,17 +32,29 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+
+
         // 1. Configuramos el LayoutManager del RecyclerView para que sea una lista vertical
         binding.rvMetaPokemons.layoutManager = LinearLayoutManager(this)
 
         // 2. Cargamos los datos desde Firebase
         loadRankingFromFirebase()
+
+        binding.btnViewMoreRanking.setOnClickListener {
+            val intent = Intent(this@MainActivity, MetaPokemonActivity::class.java)
+            startActivity(intent)
+        }
+        BottomNavHelper.setupBottomNav(
+            activity = this,
+            bottomNavigationView = binding.includedBottomNav.root,
+            currentItemId = R.id.nav_home // Aquí le decimos que ilumine "Home"
+        )
     }
 
     private fun loadRankingFromFirebase() {
         lifecycleScope.launch {
             // Obtenemos la lista desde Firestore
-            val listaPokemons = repository.getSavedPokemons()
+            val listaPokemons = repository.getSavedPokemons(limite = 4)
 
             // Instanciamos el Adapter pasándole la lista
             rankingAdapter = RankingAdapter(listaPokemons) { pokemonSeleccionado ->

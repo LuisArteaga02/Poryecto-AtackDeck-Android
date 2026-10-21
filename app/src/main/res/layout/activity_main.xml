@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        app:layout_constraintBottom_toTopOf="@+id/includedBottomNav"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -87,19 +87,20 @@
                         tools:itemCount="3" />
 
                     <!-- Botón View More -->
-                    <TextView
+                    <Button
                         android:id="@+id/btnViewMoreRanking"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="16dp"
-                        android:background="@drawable/bg_rounded_button"
+                        android:backgroundTint="#262530"
                         android:gravity="center"
                         android:paddingVertical="8dp"
                         android:text="View More..."
                         android:textColor="@color/white"
                         android:textSize="13sp"
                         android:textStyle="bold" />
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -266,15 +267,12 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <!-- Bottom Navigation Bar -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigation"
+
+    <include
+        android:id="@+id/includedBottomNav"
+        layout="@layout/layout_bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#1A1921"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
