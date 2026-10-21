@@ -12,12 +12,14 @@ import com.example.proyecto_atackdeck_android.databinding.ActivityMainBinding
 import com.example.proyecto_atackdeck_android.repository.PokemonRepository
 import com.example.proyecto_atackdeck_android.BottomNavHelper
 import kotlinx.coroutines.launch
-
+import com.google.firebase.auth.FirebaseAuth
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val repository = PokemonRepository() // Conexión a Firebase
     private lateinit var rankingAdapter: RankingAdapter
+
+    private lateinit var auth: FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,11 +28,26 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        auth = FirebaseAuth.getInstance()
+        val currentUser = auth.currentUser
+
+        if (currentUser == null) {
+            // No hay sesión activa, redirigir a LoginActivity
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+            return // Detiene la ejecución del resto del onCreate
+        }
+
+        val nombreUsuario = currentUser.email?.substringBefore("@") ?: "Usuario"
+        binding.tvUserName.text = nombreUsuario
+
+
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
 
 
 
@@ -47,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         BottomNavHelper.setupBottomNav(
             activity = this,
             bottomNavigationView = binding.includedBottomNav.root,
-            currentItemId = R.id.nav_home // Aquí le decimos que ilumine "Home"
+            currentItemId = R.id.nav_home
         )
     }
 

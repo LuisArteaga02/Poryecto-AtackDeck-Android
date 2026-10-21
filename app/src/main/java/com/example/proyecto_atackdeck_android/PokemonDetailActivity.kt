@@ -44,6 +44,12 @@ class PokemonDetailActivity : AppCompatActivity() {
             Toast.makeText(this, "Error: Pokémon no recibido", Toast.LENGTH_SHORT).show()
             finish()
         }
+
+        BottomNavHelper.setupBottomNav(
+            activity = this,
+            bottomNavigationView = binding.includedBottomNav.root,
+            currentItemId = R.id.nav_home
+        )
     }
     private fun loadPokemonByName(name: String) {
 

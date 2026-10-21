@@ -36,6 +36,14 @@ object BottomNavHelper {
                     activity.overridePendingTransition(0, 0)
                     true
                 }
+                R.id.nav_user_deck -> {
+                    val intent = Intent(activity, UserDeckActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                    activity.startActivity(intent)
+                    activity.overridePendingTransition(0, 0)
+                    true
+                }
+
                 else -> false
             }
         }

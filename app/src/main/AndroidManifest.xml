@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoAtackDeckAndroid">
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -33,6 +33,16 @@
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".GenerationListActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".UserDeckActivity" />
+        <activity
+            android:name=".EditProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.ProyectoAtackDeckAndroid"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
