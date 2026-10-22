@@ -10,6 +10,10 @@ import com.example.proyecto_atackdeck_android.databinding.ActivityUserDeckBindin
 import com.example.proyecto_atackdeck_android.BottomNavHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.launch
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.proyecto_atackdeck_android.repository.PokemonRepository
 
 
 class UserDeckActivity : AppCompatActivity() {
@@ -30,37 +34,20 @@ class UserDeckActivity : AppCompatActivity() {
             insets
         }
 
-        // 1. Inicializar Firebase Auth y verificar sesión
         auth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser
 
         if (currentUser == null) {
-            // No hay sesión activa, redirigir a LoginActivity
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
-            return // Detiene la ejecución del resto del onCreate
+            return
         }
+
 
         binding.btnEditProfile.setOnClickListener {
             val intent = Intent(this@UserDeckActivity, EditProfileActivity::class.java)
             startActivity(intent)
         }
-        val userRef = db.collection("users_profiles").document(currentUser.uid)
-
-        userRef.get().addOnSuccessListener { document ->
-            if (document.exists() && document.contains("avatarName")) {
-                // Si el usuario ya tiene un avatar guardado, lo cargamos
-                val avatarGuardado = document.getString("avatarName") ?: "avatar_entrenador"
-                cargarAvatarEnPantalla(avatarGuardado)
-            } else {
-                // Si es la primera vez que entra, le ponemos uno por defecto
-                cargarAvatarEnPantalla("avatar_entrenador") // Asegúrate de tener una imagen llamada así en drawable
-            }
-        }.addOnFailureListener {
-            // Si falla el internet, cargamos el por defecto
-            cargarAvatarEnPantalla("avatar_entrenador")
-        }
-
 
         BottomNavHelper.setupBottomNav(
             activity = this,
@@ -71,7 +58,29 @@ class UserDeckActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         cargarDatosDelPerfil()
+        loadUserTeams()
     }
+
+    private fun loadUserTeams() {
+        lifecycleScope.launch {
+            val repository = PokemonRepository()
+            val misEquipos = repository.getUserTeams() // Trae solo los equipos del usuario actual
+
+            // Reutilizamos tu TeamAdapter para mostrarlos en el RecyclerView de su perfil
+            val adapter = TeamAdapter(
+                teamList = misEquipos,
+                onPokemonClick = { pokemonId ->
+                val intent = Intent(this@UserDeckActivity, PokemonDetailActivity::class.java)
+                intent.putExtra(PokemonDetailActivity.EXTRA_POKEMON_ID, pokemonId)
+                startActivity(intent)
+            }
+            )
+
+            binding.rvUserTeams.layoutManager = LinearLayoutManager(this@UserDeckActivity)
+            binding.rvUserTeams.adapter = adapter
+        }
+    }
+
 
     private fun cargarDatosDelPerfil() {
         val currentUser = auth.currentUser ?: return

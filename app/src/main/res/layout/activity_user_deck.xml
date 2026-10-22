@@ -124,41 +124,15 @@
                                 android:gravity="center"
                                 android:orientation="horizontal">
 
-                                <ImageView
-                                    android:id="@+id/user_p1"
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    android:layout_margin="3dp" />
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/rvUserTeams"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="12dp"
+                                    android:nestedScrollingEnabled="false"
+                                    tools:listitem="@layout/item_meta_team"
+                                    tools:itemCount="3" />
 
-                                <ImageView
-                                    android:id="@+id/user_p2"
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    android:layout_margin="3dp" />
-
-                                <ImageView
-                                    android:id="@+id/user_p3"
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    android:layout_margin="3dp" />
-
-                                <ImageView
-                                    android:id="@+id/user_p4"
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    android:layout_margin="3dp" />
-
-                                <ImageView
-                                    android:id="@+id/user_p5"
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    android:layout_margin="3dp" />
-
-                                <ImageView
-                                    android:id="@+id/user_p6"
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    android:layout_margin="3dp" />
                             </LinearLayout>
 
                             <!-- Botón Edit Team -->

@@ -1,4 +1,10 @@
 package com.example.proyecto_atackdeck_android.model
 
-class UserTeam {
+data class UserTeam(
+    val teamId: String = "",
+    val userId: String = "",
+    override val teamName: String = "",
+    override val pokemons: List<TeamPokemon> = emptyList()
+): TeamModel {
+    constructor() : this("", "", "", emptyList())
 }
