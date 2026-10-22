@@ -2,6 +2,7 @@ package com.example.proyecto_atackdeck_android
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -42,7 +43,16 @@ class UserDeckActivity : AppCompatActivity() {
             finish()
             return
         }
+        binding.btnlogout.setOnClickListener {
 
+            auth.signOut()
+
+
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
 
         binding.btnEditProfile.setOnClickListener {
             val intent = Intent(this@UserDeckActivity, EditProfileActivity::class.java)
@@ -64,16 +74,32 @@ class UserDeckActivity : AppCompatActivity() {
     private fun loadUserTeams() {
         lifecycleScope.launch {
             val repository = PokemonRepository()
-            val misEquipos = repository.getUserTeams() // Trae solo los equipos del usuario actual
+            val misEquipos = repository.getUserTeams()
 
-            // Reutilizamos tu TeamAdapter para mostrarlos en el RecyclerView de su perfil
             val adapter = TeamAdapter(
                 teamList = misEquipos,
                 onPokemonClick = { pokemonId ->
-                val intent = Intent(this@UserDeckActivity, PokemonDetailActivity::class.java)
-                intent.putExtra(PokemonDetailActivity.EXTRA_POKEMON_ID, pokemonId)
-                startActivity(intent)
-            }
+                    val intent = Intent(this@UserDeckActivity, PokemonDetailActivity::class.java)
+                    intent.putExtra(PokemonDetailActivity.EXTRA_POKEMON_ID, pokemonId)
+                    startActivity(intent)
+                },
+                onEditClick = { equipoAEditar ->
+
+                    val intent = Intent(this@UserDeckActivity, EditUserTeamActivity::class.java)
+                    intent.putExtra("EXTRA_TEAM_ID", equipoAEditar.teamId)
+                    startActivity(intent)
+                },
+                onDeleteClick = { equipoABorrar ->
+                    lifecycleScope.launch {
+                        val exito = repository.deleteUserTeam(equipoABorrar.teamId)
+                        if (exito) {
+                            Toast.makeText(this@UserDeckActivity, "Equipo eliminado", Toast.LENGTH_SHORT).show()
+                            loadUserTeams() // Recargamos la lista
+                        } else {
+                            Toast.makeText(this@UserDeckActivity, "Error al eliminar", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
             )
 
             binding.rvUserTeams.layoutManager = LinearLayoutManager(this@UserDeckActivity)

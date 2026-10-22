@@ -15,6 +15,8 @@ import com.example.proyecto_atackdeck_android.BottomNavHelper
 import com.example.proyecto_atackdeck_android.model.TeamPokemon
 import kotlinx.coroutines.launch
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -22,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rankingAdapter: RankingAdapter
 
     private lateinit var auth: FirebaseAuth
+    private val db = FirebaseFirestore.getInstance()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val nombreUsuario = currentUser.email?.substringBefore("@") ?: "Usuario"
-        binding.tvUserName.text = nombreUsuario
+        binding.tvWelcome.text = "Welcome "+ nombreUsuario
 
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
@@ -67,6 +70,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, MetaPokemonActivity::class.java)
             startActivity(intent)
         }
+        binding.btnViewMoreTeams.setOnClickListener {
+            val intent = Intent(this@MainActivity, MetaTeamsActivity::class.java)
+            startActivity(intent)
+        }
 
 
         BottomNavHelper.setupBottomNav(
@@ -76,6 +83,10 @@ class MainActivity : AppCompatActivity() {
         )
 
 
+    }
+    override fun onResume() {
+        super.onResume()
+        cargarDatosDelPerfil()
     }
 
     private fun loadMetaTeams() {
@@ -107,6 +118,31 @@ class MainActivity : AppCompatActivity() {
             // Asegúrate de tener un RecyclerView en tu XML con este ID o cámbialo al tuyo
             binding.rvMetaTeams.layoutManager = LinearLayoutManager(this@MainActivity)
             binding.rvMetaTeams.adapter = adapter
+        }
+    }
+
+    private fun cargarDatosDelPerfil() {
+        val currentUser = auth.currentUser ?: return
+        val defaultName = currentUser.email?.substringBefore("@") ?: "Usuario"
+        binding.tvWelcome.text = "Welcome $defaultName"
+        val userRef = db.collection("users_profiles").document(currentUser.uid)
+
+        userRef.get().addOnSuccessListener { document ->
+            if (document.exists()) {
+
+                val nombreGuardado = document.getString("userName")
+
+
+                if (!nombreGuardado.isNullOrEmpty()) {
+                    binding.tvWelcome.text = "Welcome $nombreGuardado"
+                } else {
+                    binding.tvWelcome.text = currentUser.email?.substringBefore("@") ?: "Welcome $currentUser"
+                }
+
+
+            }
+        }.addOnFailureListener {
+            binding.tvWelcome.text = currentUser.email?.substringBefore("@") ?: "Welcome $currentUser"
         }
     }
 

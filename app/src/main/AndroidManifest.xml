@@ -43,6 +43,14 @@
             android:exported="false"
             android:theme="@style/Theme.ProyectoAtackDeckAndroid"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".EditUserTeamActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".MetaTeamsActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

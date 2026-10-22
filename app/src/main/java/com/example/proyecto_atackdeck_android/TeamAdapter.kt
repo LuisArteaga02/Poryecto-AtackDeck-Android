@@ -9,16 +9,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.proyecto_atackdeck_android.model.MetaTeam
 import com.example.proyecto_atackdeck_android.model.TeamModel
+import com.example.proyecto_atackdeck_android.model.UserTeam
 
 class TeamAdapter(
     private val teamList: List<TeamModel>,
     private val onPokemonClick: (Int) -> Unit,
-    private val onSaveClick: ((MetaTeam) -> Unit)? = null// Recibe el ID del Pokémon al tocarlo
+    private val onSaveClick: ((MetaTeam) -> Unit)? = null,
+    private val onEditClick: ((UserTeam) -> Unit)? = null,
+    private val onDeleteClick: ((UserTeam) -> Unit)? = null
 ) : RecyclerView.Adapter<TeamAdapter.TeamViewHolder>() {
 
     class TeamViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvTeamUser: TextView = view.findViewById(R.id.tvTeamUser)
         val btnSaveTeam: TextView = view.findViewById(R.id.btnSaveTeam)
+
+        val btnEditTeam: TextView = view.findViewById(R.id.btnEditTeam)
+        val btnDeleteTeam: TextView = view.findViewById(R.id.btnDeleteTeam)
         val imageViews = listOf<ImageView>(
             view.findViewById(R.id.imgP1),
             view.findViewById(R.id.imgP2),
@@ -41,13 +47,27 @@ class TeamAdapter(
 
         holder.tvTeamUser.text = team.teamName
 
-        if (team is MetaTeam && onSaveClick != null) {
-            holder.btnSaveTeam.visibility = View.VISIBLE
-            holder.btnSaveTeam.setOnClickListener {
-                onSaveClick(team)
+        when (team) {
+            is MetaTeam -> {
+                if (onSaveClick != null) {
+                    holder.btnSaveTeam.visibility = View.VISIBLE
+                    holder.btnSaveTeam.setOnClickListener { onSaveClick.invoke(team) }
+                }
+                holder.btnEditTeam.visibility = View.GONE
+                holder.btnDeleteTeam.visibility = View.GONE
             }
-        } else {
-            holder.btnSaveTeam.visibility = View.GONE
+            is UserTeam -> {
+                holder.btnSaveTeam.visibility = View.GONE
+
+                if (onEditClick != null) {
+                    holder.btnEditTeam.visibility = View.VISIBLE
+                    holder.btnEditTeam.setOnClickListener { onEditClick.invoke(team) }
+                }
+                if (onDeleteClick != null) {
+                    holder.btnDeleteTeam.visibility = View.VISIBLE
+                    holder.btnDeleteTeam.setOnClickListener { onDeleteClick.invoke(team) }
+                }
+            }
         }
 
         // 2. Iterar sobre los 6 espacios de imagen

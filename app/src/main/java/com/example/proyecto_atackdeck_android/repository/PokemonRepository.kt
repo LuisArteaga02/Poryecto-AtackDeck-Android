@@ -55,6 +55,57 @@ class PokemonRepository {
         }
     }
 
+    suspend fun deleteUserTeam(teamId: String): Boolean {
+        val currentUser = auth.currentUser ?: return false
+        return try {
+            db.collection("users_profiles")
+                .document(currentUser.uid)
+                .collection("user_teams")
+                .document(teamId)
+                .delete()
+                .await()
+            true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
+        }
+    }
+
+    suspend fun getUserTeamById(teamId: String): UserTeam? {
+        val currentUser = auth.currentUser ?: return null
+        return try {
+            val snapshot = db.collection("users_profiles")
+                .document(currentUser.uid)
+                .collection("user_teams")
+                .document(teamId)
+                .get()
+                .await()
+            snapshot.toObject(UserTeam::class.java)
+        } catch (e: Exception) {
+            null
+        }
+    }
+    suspend fun updateTeamInfo(teamId: String, newName: String, pokemonsList: List<TeamPokemon>): Boolean {
+        val currentUser = auth.currentUser ?: return false
+        return try {
+            db.collection("users_profiles")
+                .document(currentUser.uid)
+                .collection("user_teams")
+                .document(teamId)
+                .update(
+                    mapOf(
+                        "teamName" to newName,
+                        "pokemons" to pokemonsList
+                    )
+                ).await()
+            true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
+        }
+    }
+
+
     suspend fun getUserTeams(): List<UserTeam> {
         val currentUser = auth.currentUser ?: return emptyList()
         val userId = currentUser.uid
@@ -70,6 +121,22 @@ class PokemonRepository {
         } catch (e: Exception) {
             e.printStackTrace()
             emptyList()
+        }
+    }
+
+    suspend fun updateUserTeamPokemons(teamId: String, pokemonsList: List<TeamPokemon>): Boolean {
+        val currentUser = auth.currentUser ?: return false
+        return try {
+            db.collection("users_profiles")
+                .document(currentUser.uid)
+                .collection("user_teams")
+                .document(teamId)
+                .update("pokemons", pokemonsList)
+                .await()
+            true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
         }
     }
 

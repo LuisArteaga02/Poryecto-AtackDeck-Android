@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Editar Equipo"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <!-- Campo para editar el nombre -->
+    <EditText
+        android:id="@+id/etEditTeamName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_rounded_item"
+        android:hint="Nombre del equipo"
+        android:paddingHorizontal="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="#9CA3AF" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Toca un Pokémon para eliminarlo del equipo:"
+        android:textColor="#9CA3AF"
+        android:textSize="14sp" />
+
+    <!-- Lista de Pokémon -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEditTeamPokemons"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Botón para guardar -->
+    <Button
+        android:id="@+id/btnSaveEditedTeam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#881337"
+        android:text="Guardar Cambios"
+        android:textColor="@color/white" />
+
+</LinearLayout>

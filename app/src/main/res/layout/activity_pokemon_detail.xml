@@ -225,6 +225,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+        <!-- Añade este botón donde prefieras en tu activity_pokemon_detail.xml -->
+        <Button
+            android:id="@+id/btnAddToTeam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:text="Agregar a mi Equipo"
+            android:backgroundTint="#881337"
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/tvHp"
@@ -261,7 +271,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView" />
+
     </LinearLayout>
+
     <include
         android:id="@+id/includedBottomNav"
         layout="@layout/layout_bottom_nav"
