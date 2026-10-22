@@ -5,17 +5,23 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
+import com.example.proyecto_atackdeck_android.api.ApiPokemon
 import androidx.core.view.WindowInsetsCompat
 import com.example.proyecto_atackdeck_android.databinding.ActivitySearchBinding
 import com.example.proyecto_atackdeck_android.BottomNavHelper
+import com.example.proyecto_atackdeck_android.api.RetrofitInstance
 
 class SearchActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySearchBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +67,7 @@ class SearchActivity : AppCompatActivity() {
             bottomNavigationView = binding.includedBottomNav.root,
             currentItemId = R.id.nav_search
         )
+        cargarSugerenciasDePokemon()
     }
 
     private fun realizarBusqueda() {
@@ -73,6 +80,43 @@ class SearchActivity : AppCompatActivity() {
             startActivity(intent)
         } else {
             Toast.makeText(this, "Ingresa un nombre de Pokémon", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun cargarSugerenciasDePokemon() {
+        lifecycleScope.launch {
+            try {
+                // Descargamos la lista completa de nombres
+                val response = RetrofitInstance.apiInterface.getAllPokemon()
+
+                if (response.isSuccessful && response.body() != null) {
+                    // Extraemos solo los nombres y los pasamos a una lista de Strings
+                    val nombresPokemon = response.body()!!.results.map { it.name }
+
+                    // Creamos el adaptador nativo de Android para listas desplegables
+                    val adapter = ArrayAdapter(
+                        this@SearchActivity,
+                        android.R.layout.simple_dropdown_item_1line, // Diseño por defecto de Android
+                        nombresPokemon
+                    )
+
+
+                    binding.etSearch.setAdapter(adapter)
+
+
+                    binding.etSearch.setOnItemClickListener { parent, view, position, id ->
+
+                        val imm = getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
+                        imm.hideSoftInputFromWindow(binding.etSearch.windowToken, 0)
+
+
+                        realizarBusqueda()
+                    }
+                }
+            } catch (e: Exception) {
+
+                e.printStackTrace()
+            }
         }
     }
 

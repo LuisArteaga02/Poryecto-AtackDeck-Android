@@ -29,7 +29,7 @@
             android:orientation="horizontal"
             android:paddingHorizontal="16dp">
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/etSearch"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -40,7 +40,8 @@
                 android:inputType="text"
                 android:textColor="@color/white"
                 android:textColorHint="#9CA3AF"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:completionThreshold="1" />
 
             <ImageView
                 android:layout_width="24dp"
