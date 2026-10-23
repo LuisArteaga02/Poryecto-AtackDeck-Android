@@ -19,7 +19,6 @@ interface ApiPokemon {
     @GET("pokemon/{name}")
     suspend fun getPokemonByName(@Path("name") name: String): Response<Pokemon>
     @GET("generation/{id}")
-
     suspend fun getGeneration(@Path("id") id: Int): Response<Generation>
 
     data class PokemonListResponse(

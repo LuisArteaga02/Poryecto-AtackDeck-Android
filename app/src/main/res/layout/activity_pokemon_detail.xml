@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="#000"
-        android:textColor="#9CA3AF"
+        android:textColor="#ffffff"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,22 +92,26 @@
             android:paddingHorizontal="18dp"
             android:paddingVertical="6dp"
             android:layout_marginEnd="8dp"
-            android:background="#2E7D32"
+            android:background="#000000"
+            android:backgroundTint="#7AC74C"
             android:text="grass"
             android:textColor="#FFFFFF"
             android:textSize="13sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textAllCaps="true"/>
         <TextView
             android:id="@+id/tvType2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingHorizontal="18dp"
             android:paddingVertical="6dp"
-            android:background="#7B1FA2"
+            android:background="#000000"
+            android:backgroundTint="#A33EA1"
             android:text="poison"
             android:textColor="#FFFFFF"
             android:textSize="13sp"
             android:textStyle="bold"
+            android:textAllCaps="true"
             android:visibility="gone" />
     </LinearLayout>
     <View
@@ -193,29 +197,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvAbility1"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
+        android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider2"
-        app:layout_constraintVertical_bias="0.095" />
+        app:layout_constraintTop_toBottomOf="@+id/divider2">
+        <TextView
+            android:id="@+id/tvAbilities"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/abilitiesTitle"
+            android:textColor="#ffffff"
+            android:textSize="24sp"
+            android:layout_gravity="center" />
+        <TextView
+            android:id="@+id/tvAbility1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="#ffffff"
+            android:layout_gravity="center" />
 
-    <TextView
-        android:id="@+id/tvAbility2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAbility1"
-        app:layout_constraintVertical_bias="0.071" />
+        <TextView
+            android:id="@+id/tvAbility2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="#ffffff"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/tvAbility3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="#ffffff"
+            android:layout_gravity="center" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="305dp"
@@ -225,7 +246,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-        <!-- Añade este botón donde prefieras en tu activity_pokemon_detail.xml -->
         <Button
             android:id="@+id/btnAddToTeam"
             android:layout_width="match_parent"

@@ -16,6 +16,8 @@ import androidx.appcompat.app.AlertDialog
 import com.example.proyecto_atackdeck_android.model.TeamPokemon
 import com.example.proyecto_atackdeck_android.model.UserTeam
 import com.example.proyecto_atackdeck_android.repository.PokemonRepository
+import com.example.proyecto_atackdeck_android.util.toNaturalFormat
+import androidx.core.graphics.toColorInt
 
 
 class PokemonDetailActivity : AppCompatActivity() {
@@ -92,36 +94,37 @@ class PokemonDetailActivity : AppCompatActivity() {
                     val weightKg = pokemon.weight / 10.0
                     binding.tvWeight.text = "${"%.1f".format(weightKg)} kg"
 
-                    val tipos = pokemon.types.sortedBy { it.slot }
-                    val tipoPrincipal = tipos.getOrNull(0)?.type?.name ?: ""
-                    binding.tvType1.text = tipoPrincipal
-                    binding.tvType1.visibility = if (tipos.isNotEmpty()) View.VISIBLE else View.GONE
+                    // Tipos
+                    val tipos = pokemon.types
+                    val tipo1 = tipos.getOrNull(0)?.type?.name ?: "???"
+                    binding.tvType1.text = tipo1
+                    binding.tvType1.backgroundTintList = ColorStateList.valueOf(getColorByType(tipo1))
 
-                    val type2 = tipos.getOrNull(1)?.type?.name
-                    if (type2 != null) {
-                        binding.tvType2.text = type2
+                    val tipo2 = tipos.getOrNull(1)?.type?.name
+                    if (!tipo2.isNullOrEmpty()) {
+                        binding.tvType2.text = tipo2
+                        binding.tvType2.backgroundTintList = ColorStateList.valueOf(getColorByType(tipo2))
                         binding.tvType2.visibility = View.VISIBLE
                     } else {
                         binding.tvType2.visibility = View.GONE
                     }
 
-                    if (tipoPrincipal.isNotEmpty()) {
-                        val colorPokemon = getColorByType(tipoPrincipal)
+                    if (tipo1.isNotEmpty()) {
+                        val colorPokemon = getColorByType(tipo1)
                         binding.viewPokemonBackground.backgroundTintList =
                             ColorStateList.valueOf(colorPokemon)
                     }
 
+                    // Habilidades
                     val habilidades = pokemon.abilities
-                    binding.tvAbility1.text = habilidades.getOrNull(0)?.ability?.name ?: "N/A"
 
-                    val ability2 = habilidades.getOrNull(1)?.ability?.name
-                    if (ability2 != null) {
-                        binding.tvAbility2.text = ability2
-                        binding.tvAbility2.visibility = View.VISIBLE
-                    } else {
-                        binding.tvAbility2.visibility = View.GONE
+                    listOf(binding.tvAbility1, binding.tvAbility2, binding.tvAbility3).forEachIndexed { i, tv ->
+                        val hab = habilidades.getOrNull(i)
+                        tv.visibility = if (hab != null) View.VISIBLE else View.GONE
+                        hab?.let { tv.text = if (it.isHidden) "${it.ability.name.toNaturalFormat()} (hidden)" else it.ability.name.toNaturalFormat() }
                     }
 
+                    // Stats
                     val statsList = pokemon.stats
                     binding.tvHp.text =
                         statsList.find { it.stat.name == "hp" }?.base_stat?.toString() ?: "0"
@@ -273,25 +276,25 @@ class PokemonDetailActivity : AppCompatActivity() {
 
     private fun getColorByType(type: String): Int {
         return when (type.lowercase()) {
-            "normal" -> Color.parseColor("#A8A77A")
-            "fire" -> Color.parseColor("#EE8130")
-            "water" -> Color.parseColor("#6390F0")
-            "electric" -> Color.parseColor("#F7D02C")
-            "grass" -> Color.parseColor("#7AC74C")
-            "ice" -> Color.parseColor("#96D9D6")
-            "fighting" -> Color.parseColor("#C22E28")
-            "poison" -> Color.parseColor("#A33EA1")
-            "ground" -> Color.parseColor("#E2BF65")
-            "flying" -> Color.parseColor("#A98FF3")
-            "psychic" -> Color.parseColor("#F95587")
-            "bug" -> Color.parseColor("#A6B91A")
-            "rock" -> Color.parseColor("#B6A136")
-            "ghost" -> Color.parseColor("#735797")
-            "dragon" -> Color.parseColor("#6F35FC")
-            "dark" -> Color.parseColor("#705848")
-            "steel" -> Color.parseColor("#B7B7CE")
-            "fairy" -> Color.parseColor("#D685AD")
-            else -> Color.parseColor("#777777") // Color por defecto (gris)
+            "normal" -> "#A8A77A".toColorInt()
+            "fire" -> "#EE8130".toColorInt()
+            "water" -> "#6390F0".toColorInt()
+            "electric" -> "#F7D02C".toColorInt()
+            "grass" -> "#7AC74C".toColorInt()
+            "ice" -> "#96D9D6".toColorInt()
+            "fighting" -> "#C22E28".toColorInt()
+            "poison" -> "#A33EA1".toColorInt()
+            "ground" -> "#E2BF65".toColorInt()
+            "flying" -> "#A98FF3".toColorInt()
+            "psychic" -> "#F95587".toColorInt()
+            "bug" -> "#A6B91A".toColorInt()
+            "rock" -> "#B6A136".toColorInt()
+            "ghost" -> "#735797".toColorInt()
+            "dragon" -> "#6F35FC".toColorInt()
+            "dark" -> "#705848".toColorInt()
+            "steel" -> "#B7B7CE".toColorInt()
+            "fairy" -> "#D685AD".toColorInt()
+            else -> "#777777".toColorInt() // Color por defecto (gris)
         }
     }
 }

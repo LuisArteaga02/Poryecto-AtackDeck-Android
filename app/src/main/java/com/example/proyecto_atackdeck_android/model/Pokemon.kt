@@ -10,10 +10,30 @@ data class Pokemon(
     val height: Int, // En decímetros (1.2 m -> 12)
     val weight: Int, // En hectogramos (54.0 kg -> 540)
     val abilities: List<AbilitySlot>,
-    val abilityHidden: Ability,
     val stats: List<StatSlot>, // HP, Attack, Defense, Sp. Attack, Sp. Defense, Speed, Total
     val genderRate: Int,
     val sprites: Sprites
+)
+
+data class TypeSlot(
+    val slot: Int,
+    val type: Type
+)
+
+data class Type(
+    val name: String,
+    val url: String
+)
+
+data class AbilitySlot(
+    @SerializedName("is_hidden")
+    val isHidden: Boolean,
+    val ability: Ability
+)
+
+data class Ability(
+    val name: String,
+    val url: String,
 )
 
 data class StatSlot(
@@ -24,24 +44,7 @@ data class StatDetail(
     val name: String
 )
 
-data class AbilitySlot(
-    val is_hidden: Boolean,
-    val slot: Int,
-    val ability: AbilityDetail
-)
-data class AbilityDetail(
-    val name: String,
-    val url: String
-)
 data class Sprites(
     @SerializedName("front_default")
     val frontDefault: String?
-)
-
-data class TypeSlot(
-    val slot: Int,
-    val type: TypeInfo
-)
-data class TypeInfo(
-    val name: String
 )
