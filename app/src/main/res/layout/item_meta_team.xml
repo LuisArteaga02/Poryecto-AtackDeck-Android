@@ -98,5 +98,21 @@
             android:textStyle="bold"
             android:visibility="gone" />
 
+        <!-- Botón Publicar (Para subir a la comunidad) -->
+        <TextView
+            android:id="@+id/btnPublishTeam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_rounded_button"
+            android:backgroundTint="#3B82F6"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp"
+            android:text="Publicar"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>
