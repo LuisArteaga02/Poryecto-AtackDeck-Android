@@ -83,17 +83,18 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        BottomNavHelper.setupBottomNav(
-            activity = this,
-            bottomNavigationView = binding.includedBottomNav.root,
-            currentItemId = R.id.nav_home
-        )
+
 
 
     }
     override fun onResume() {
         super.onResume()
         cargarDatosDelPerfil()
+        BottomNavHelper.setupBottomNav(
+            activity = this,
+            bottomNavigationView = binding.includedBottomNav.root,
+            currentItemId = R.id.nav_home
+        )
     }
 
     private fun loadMetaTeams() {

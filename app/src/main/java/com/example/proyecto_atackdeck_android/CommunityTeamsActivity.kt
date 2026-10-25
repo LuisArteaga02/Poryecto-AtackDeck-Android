@@ -50,12 +50,7 @@ class CommunityTeamsActivity : AppCompatActivity() {
             loadCommunityTeams()
         }
 
-        // Configurar navegación
-        BottomNavHelper.setupBottomNav(
-            activity = this,
-            bottomNavigationView = binding.includedBottomNav.root,
-            currentItemId = R.id.nav_home // Cambia esto si tienes un ícono específico para comunidad
-        )
+        binding.btnVolver.setOnClickListener { finish() }
 
         loadCommunityTeams()
     }

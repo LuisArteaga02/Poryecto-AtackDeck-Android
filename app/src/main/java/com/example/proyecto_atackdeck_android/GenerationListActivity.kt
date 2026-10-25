@@ -36,7 +36,7 @@ class GenerationListActivity : AppCompatActivity() {
         binding.tvGenerationTitle.text = "Generación $generationId"
 
         // Botón Volver
-        binding.btnBack.setOnClickListener { finish() }
+        binding.btnVolver.setOnClickListener { finish() }
 
         // Configurar RecyclerView
         binding.rvGenerationPokemons.layoutManager = LinearLayoutManager(this)

@@ -17,12 +17,9 @@ class HelpActivity : AppCompatActivity() {
 
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.btnVolver.setOnClickListener { finish() }
 
-
-        BottomNavHelper.setupBottomNav(
-            activity = this,
-            bottomNavigationView = binding.includedBottomNav.root,
-            currentItemId = R.id.nav_home
-        )
     }
+
+
 }

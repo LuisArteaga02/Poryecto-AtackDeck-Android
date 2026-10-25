@@ -62,12 +62,17 @@ class SearchActivity : AppCompatActivity() {
         binding.cardGen9.setOnClickListener { abrirGeneracion(9) }
 
         // Configurar Bottom Navigation
+
+        cargarSugerenciasDePokemon()
+    }
+
+    override fun onResume() {
+        super.onResume()
         BottomNavHelper.setupBottomNav(
             activity = this,
             bottomNavigationView = binding.includedBottomNav.root,
             currentItemId = R.id.nav_search
         )
-        cargarSugerenciasDePokemon()
     }
 
     private fun realizarBusqueda() {

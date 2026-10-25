@@ -69,6 +69,11 @@ class UserDeckActivity : AppCompatActivity() {
         super.onResume()
         cargarDatosDelPerfil()
         loadUserTeams()
+        BottomNavHelper.setupBottomNav(
+            activity = this,
+            bottomNavigationView = binding.includedBottomNav.root,
+            currentItemId = R.id.nav_user_deck
+        )
     }
 
     private fun loadUserTeams() {

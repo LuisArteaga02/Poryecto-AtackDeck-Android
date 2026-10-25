@@ -34,7 +34,7 @@ class PokemonDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPokemonDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.btnBack.setOnClickListener { finish() }
+        binding.btnVolver.setOnClickListener { finish() }
         binding.btnAddToTeam.isEnabled = false
         binding.btnAddToTeam.setOnClickListener {
             mostrarDialogoEquipos()
@@ -52,11 +52,7 @@ class PokemonDetailActivity : AppCompatActivity() {
             finish()
         }
 
-        BottomNavHelper.setupBottomNav(
-            activity = this,
-            bottomNavigationView = binding.includedBottomNav.root,
-            currentItemId = R.id.nav_home
-        )
+
     }
 
     private fun descargarDatosPokemon(nombre: String?, id: Int) {

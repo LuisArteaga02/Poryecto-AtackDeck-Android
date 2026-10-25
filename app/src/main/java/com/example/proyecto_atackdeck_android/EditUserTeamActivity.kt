@@ -45,6 +45,7 @@ class EditUserTeamActivity : AppCompatActivity() {
         }
         binding.rvEditTeamPokemons.layoutManager = LinearLayoutManager(this)
         binding.rvEditTeamPokemons.adapter = adapter
+        binding.btnVolver.setOnClickListener { finish() }
 
         // Cargar los datos desde Firebase
         cargarDatosDelEquipo()
