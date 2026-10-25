@@ -78,7 +78,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, CommunityTeamsActivity::class.java)
             startActivity(intent)
         }
-
+        binding.btnHelp.setOnClickListener {
+            val intent = Intent(this@MainActivity, HelpActivity::class.java)
+            startActivity(intent)
+        }
 
         BottomNavHelper.setupBottomNav(
             activity = this,

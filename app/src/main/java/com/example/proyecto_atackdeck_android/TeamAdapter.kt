@@ -80,7 +80,7 @@ class TeamAdapter(
             }
         }
 
-        // 2. Iterar sobre los 6 espacios de imagen
+
         for (i in 0 until 6) {
             val imgView = holder.imageViews[i]
             val pokemonData = team.pokemons.getOrNull(i)

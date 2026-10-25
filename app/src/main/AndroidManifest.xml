@@ -55,6 +55,11 @@
             android:name=".CommunityTeamActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".HelpActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".CommunityTeamsActivity"
             android:exported="false"
