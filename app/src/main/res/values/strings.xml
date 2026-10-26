@@ -52,4 +52,5 @@
     <string name="statNameSpeed">SPEED</string>
     <string name="bst">TOTAL</string>
     <string name="statValue">100</string>
+    <string name="movesTitle">Moves</string>
 </resources>
