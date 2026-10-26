@@ -10,7 +10,7 @@ data class Pokemon(
     val height: Int, // En decímetros (1.2 m -> 12)
     val weight: Int, // En hectogramos (54.0 kg -> 540)
     val abilities: List<AbilitySlot>,
-    val stats: List<StatSlot>, // HP, Attack, Defense, Sp. Attack, Sp. Defense, Speed, Total
+    val stats: List<Stat>, // HP, Attack, Defense, Sp. Attack, Sp. Defense, Speed, Total
     val genderRate: Int,
     val sprites: Sprites
 )
@@ -36,12 +36,9 @@ data class Ability(
     val url: String,
 )
 
-data class StatSlot(
-    val base_stat: Int,
-    val stat: StatDetail
-)
-data class StatDetail(
-    val name: String
+data class Stat(
+    @SerializedName("base_stat")
+    val baseStat: Int
 )
 
 data class Sprites(

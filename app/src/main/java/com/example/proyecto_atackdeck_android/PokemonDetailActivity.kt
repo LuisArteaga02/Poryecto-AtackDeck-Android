@@ -2,22 +2,24 @@ package com.example.proyecto_atackdeck_android
 
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.graphics.toColorInt
+import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.proyecto_atackdeck_android.api.RetrofitInstance
 import com.example.proyecto_atackdeck_android.databinding.ActivityPokemonDetailBinding
-import kotlinx.coroutines.launch
-import android.graphics.Color
-import android.widget.EditText
-import androidx.appcompat.app.AlertDialog
 import com.example.proyecto_atackdeck_android.model.TeamPokemon
 import com.example.proyecto_atackdeck_android.model.UserTeam
 import com.example.proyecto_atackdeck_android.repository.PokemonRepository
 import com.example.proyecto_atackdeck_android.util.toNaturalFormat
-import androidx.core.graphics.toColorInt
+import kotlinx.coroutines.launch
 
 
 class PokemonDetailActivity : AppCompatActivity() {
@@ -124,23 +126,43 @@ class PokemonDetailActivity : AppCompatActivity() {
                         hab?.let { tv.text = if (it.isHidden) "${it.ability.name.toNaturalFormat()} (hidden)" else it.ability.name.toNaturalFormat() }
                     }
 
-                    // Stats
+                    // Stats base
                     val statsList = pokemon.stats
-                    binding.tvHp.text =
-                        statsList.find { it.stat.name == "hp" }?.base_stat?.toString() ?: "0"
-                    binding.tvAttack.text =
-                        statsList.find { it.stat.name == "attack" }?.base_stat?.toString() ?: "0"
-                    binding.tvDefense.text =
-                        statsList.find { it.stat.name == "defense" }?.base_stat?.toString() ?: "0"
-                    binding.tvSpAttack.text =
-                        statsList.find { it.stat.name == "special-attack" }?.base_stat?.toString()
-                            ?: "0"
-                    binding.tvSpDefense.text =
-                        statsList.find { it.stat.name == "special-defense" }?.base_stat?.toString()
-                            ?: "0"
-                    binding.tvSpeed.text =
-                        statsList.find { it.stat.name == "speed" }?.base_stat?.toString() ?: "0"
+                    listOf(
+                        binding.tvHpValue,
+                        binding.tvAttackValue,
+                        binding.tvDefenseValue,
+                        binding.tvSpAttackValue,
+                        binding.tvSpDefenseValue,
+                        binding.tvSpeedValue
+                    ).forEachIndexed { i, tv ->
+                        val stat = statsList.getOrNull(i)
+                        stat?.let { tv.text = it.baseStat.toString() }
+                    }
+                    binding.tvBstValue.text = statsList.sumOf { it.baseStat }.toString()
 
+                    // Barras de stats
+                    listOf(
+                        binding.tvHpBar,
+                        binding.tvAttackBar,
+                        binding.tvDefenseBar,
+                        binding.tvSpAttackBar,
+                        binding.tvSpDefenseBar,
+                        binding.tvSpeedBar
+                    ).forEachIndexed { i, bar ->
+                        val stat = statsList.getOrNull(i)
+                        stat?.let {
+                            bar.backgroundTintList = ColorStateList.valueOf(getStatBarColor(it.baseStat))
+                            bar.updateLayoutParams<ConstraintLayout.LayoutParams> {
+                                val p = if (it.baseStat >= 200) 1.0f else it.baseStat / 200f
+                                width = ConstraintLayout.LayoutParams.MATCH_CONSTRAINT
+                                matchConstraintPercentWidth = p
+                                Log.println(Log.INFO, null, matchConstraintPercentWidth.toString())
+                            }
+                        }
+                    }
+
+                    // Imagen
                     val spriteUrl = pokemonActualParaGuardar!!.spriteUrl
                     if (spriteUrl.isNotEmpty()) {
                         Glide.with(this@PokemonDetailActivity)
@@ -276,25 +298,37 @@ class PokemonDetailActivity : AppCompatActivity() {
 
     private fun getColorByType(type: String): Int {
         return when (type.lowercase()) {
-            "normal" -> "#A8A77A".toColorInt()
-            "fire" -> "#EE8130".toColorInt()
-            "water" -> "#6390F0".toColorInt()
-            "electric" -> "#F7D02C".toColorInt()
-            "grass" -> "#7AC74C".toColorInt()
-            "ice" -> "#96D9D6".toColorInt()
-            "fighting" -> "#C22E28".toColorInt()
-            "poison" -> "#A33EA1".toColorInt()
-            "ground" -> "#E2BF65".toColorInt()
-            "flying" -> "#A98FF3".toColorInt()
-            "psychic" -> "#F95587".toColorInt()
-            "bug" -> "#A6B91A".toColorInt()
-            "rock" -> "#B6A136".toColorInt()
-            "ghost" -> "#735797".toColorInt()
-            "dragon" -> "#6F35FC".toColorInt()
-            "dark" -> "#705848".toColorInt()
-            "steel" -> "#B7B7CE".toColorInt()
-            "fairy" -> "#D685AD".toColorInt()
-            else -> "#777777".toColorInt() // Color por defecto (gris)
-        }
+            "normal" -> "#A8A77A"
+            "fire" -> "#EE8130"
+            "water" -> "#6390F0"
+            "electric" -> "#F7D02C"
+            "grass" -> "#7AC74C"
+            "ice" -> "#96D9D6"
+            "fighting" -> "#C22E28"
+            "poison" -> "#A33EA1"
+            "ground" -> "#E2BF65"
+            "flying" -> "#A98FF3"
+            "psychic" -> "#F95587"
+            "bug" -> "#A6B91A"
+            "rock" -> "#B6A136"
+            "ghost" -> "#735797"
+            "dragon" -> "#6F35FC"
+            "dark" -> "#705848"
+            "steel" -> "#B7B7CE"
+            "fairy" -> "#D685AD"
+            else -> "#777777" // Color por defecto (gris)
+        }.toColorInt()
+    }
+
+    private fun getStatBarColor(value: Int): Int {
+        return when (value) {
+            in 1..29 -> "#F34444"
+            in 30 .. 59 -> "#FF7F0F"
+            in 60 .. 89 -> "#FFDD57"
+            in 90 .. 119 -> "#A0E515"
+            in 120 .. 149 -> "#23CD5E"
+            in 150 .. 255 -> "00C2B8"
+            else -> "#777777"
+        }.toColorInt()
     }
 }

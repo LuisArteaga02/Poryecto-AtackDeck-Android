@@ -43,4 +43,13 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="abilitiesTitle">Abilities</string>
+    <string name="baseStatsTitle">Base stats</string>
+    <string name="statNameHp">HP</string>
+    <string name="statNameAttack">ATK</string>
+    <string name="statNameDefense">DEF</string>
+    <string name="statNameSpAttack">SP. ATK</string>
+    <string name="statNameSpDefense">SP. DEF</string>
+    <string name="statNameSpeed">SPEED</string>
+    <string name="bst">TOTAL</string>
+    <string name="statValue">100</string>
 </resources>
