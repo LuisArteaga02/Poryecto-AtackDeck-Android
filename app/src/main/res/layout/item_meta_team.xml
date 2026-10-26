@@ -53,50 +53,77 @@
             <ImageView android:id="@+id/imgP5" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="2dp" android:scaleType="fitCenter" android:background="#0B0912"/>
             <ImageView android:id="@+id/imgP6" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="2dp" android:scaleType="fitCenter" android:background="#0B0912"/>
         </LinearLayout>
-        <TextView
-        android:id="@+id/btnEditTeam"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/bg_rounded_button"
-        android:backgroundTint="#4CAF50"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="6dp"
-        android:text="Editar"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        android:visibility="gone" />
-
-        <!-- Botón Eliminar -->
-        <TextView
-            android:id="@+id/btnDeleteTeam"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_rounded_button"
-            android:backgroundTint="#D32F2F"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="6dp"
-            android:text="Borrar"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:visibility="gone" />
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:layout_marginTop="12dp">
 
-        <!-- Botón Guardar (Se usa en MainActivity) -->
-        <TextView
-            android:id="@+id/btnSaveTeam"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_rounded_button"
-            android:backgroundTint="#881337"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="6dp"
-            android:text="Guardar"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:visibility="gone" />
+            <!-- Botón Publicar (Para subir a la comunidad) -->
+            <TextView
+                android:id="@+id/btnPublishTeam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_rounded_button"
+                android:backgroundTint="#3B82F6"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:text="Publicar"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <!-- Botón Editar -->
+            <TextView
+                android:id="@+id/btnEditTeam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_rounded_button"
+                android:backgroundTint="#4CAF50"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:text="Editar"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <!-- Botón Guardar (Se usa en MainActivity) -->
+            <TextView
+                android:id="@+id/btnSaveTeam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_rounded_button"
+                android:backgroundTint="#881337"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:text="Guardar"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <!-- Botón Eliminar -->
+            <TextView
+                android:id="@+id/btnDeleteTeam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rounded_button"
+                android:backgroundTint="#D32F2F"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:text="Borrar"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

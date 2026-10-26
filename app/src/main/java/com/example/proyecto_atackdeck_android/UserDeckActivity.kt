@@ -69,6 +69,11 @@ class UserDeckActivity : AppCompatActivity() {
         super.onResume()
         cargarDatosDelPerfil()
         loadUserTeams()
+        BottomNavHelper.setupBottomNav(
+            activity = this,
+            bottomNavigationView = binding.includedBottomNav.root,
+            currentItemId = R.id.nav_user_deck
+        )
     }
 
     private fun loadUserTeams() {
@@ -99,12 +104,46 @@ class UserDeckActivity : AppCompatActivity() {
                             Toast.makeText(this@UserDeckActivity, "Error al eliminar", Toast.LENGTH_SHORT).show()
                         }
                     }
+                },
+                onPublishClick = { equipoAPublicar ->
+                    // Ejecuta la función para mostrar la ventana de publicación
+                    mostrarDialogoPublicar(equipoAPublicar, repository)
                 }
             )
 
             binding.rvUserTeams.layoutManager = LinearLayoutManager(this@UserDeckActivity)
             binding.rvUserTeams.adapter = adapter
         }
+    }
+
+    private fun mostrarDialogoPublicar(equipo: com.example.proyecto_atackdeck_android.model.UserTeam, repository: PokemonRepository) {
+        val input = android.widget.EditText(this)
+        input.hint = "Escribe una breve descripción o estrategia..."
+
+        androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle("Publicar Equipo")
+            .setMessage("Comparte tu equipo '${equipo.teamName}' con la comunidad.")
+            .setView(input)
+            .setPositiveButton("Publicar") { _, _ ->
+                val descripcion = input.text.toString().trim()
+
+                lifecycleScope.launch {
+
+                    val exito = repository.uploadCommunityTeam(
+                        teamName = equipo.teamName,
+                        description = descripcion,
+                        pokemonsList = equipo.pokemons
+                    )
+
+                    if (exito) {
+                        Toast.makeText(this@UserDeckActivity, "¡Equipo subido a la comunidad!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@UserDeckActivity, "Error al publicar", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            .setNegativeButton("Cancelar", null)
+            .show()
     }
 
 

@@ -42,7 +42,7 @@ class EditProfileActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
 
-        BottomNavHelper.setupBottomNav(this, binding.includedBottomNav.root, R.id.nav_user_deck)
+
 
 
         val adapter = AvatarAdapter(listaAvatares) { avatarName ->
@@ -51,7 +51,7 @@ class EditProfileActivity : AppCompatActivity() {
             actualizarImagenPrincipal(avatarName)
         }
         binding.rvAvatars.adapter = adapter
-
+        binding.btnVolver.setOnClickListener { finish() }
 
         cargarDatosDeUsuario()
 

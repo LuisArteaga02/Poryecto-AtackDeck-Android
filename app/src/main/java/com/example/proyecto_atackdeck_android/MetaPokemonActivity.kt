@@ -27,7 +27,7 @@ class MetaPokemonActivity : AppCompatActivity() {
         // 2. Inicializamos el binding y lo pasamos al setContentView
         binding = ActivityMetaPokemonBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        binding.btnVolver.setOnClickListener { finish() }
         // 3. Usamos binding.main en lugar de findViewById
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

@@ -16,7 +16,8 @@ class TeamAdapter(
     private val onPokemonClick: (Int) -> Unit,
     private val onSaveClick: ((MetaTeam) -> Unit)? = null,
     private val onEditClick: ((UserTeam) -> Unit)? = null,
-    private val onDeleteClick: ((UserTeam) -> Unit)? = null
+    private val onDeleteClick: ((UserTeam) -> Unit)? = null,
+    private val onPublishClick: ((UserTeam) -> Unit)? = null
 ) : RecyclerView.Adapter<TeamAdapter.TeamViewHolder>() {
 
     class TeamViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -25,6 +26,7 @@ class TeamAdapter(
 
         val btnEditTeam: TextView = view.findViewById(R.id.btnEditTeam)
         val btnDeleteTeam: TextView = view.findViewById(R.id.btnDeleteTeam)
+        val btnPublishTeam: TextView = view.findViewById(R.id.btnPublishTeam)
         val imageViews = listOf<ImageView>(
             view.findViewById(R.id.imgP1),
             view.findViewById(R.id.imgP2),
@@ -52,9 +54,11 @@ class TeamAdapter(
                 if (onSaveClick != null) {
                     holder.btnSaveTeam.visibility = View.VISIBLE
                     holder.btnSaveTeam.setOnClickListener { onSaveClick.invoke(team) }
+
                 }
                 holder.btnEditTeam.visibility = View.GONE
                 holder.btnDeleteTeam.visibility = View.GONE
+                holder.btnPublishTeam.visibility = View.GONE
             }
             is UserTeam -> {
                 holder.btnSaveTeam.visibility = View.GONE
@@ -67,10 +71,16 @@ class TeamAdapter(
                     holder.btnDeleteTeam.visibility = View.VISIBLE
                     holder.btnDeleteTeam.setOnClickListener { onDeleteClick.invoke(team) }
                 }
+                if (onPublishClick != null) {
+                    holder.btnPublishTeam.visibility = View.VISIBLE
+                    holder.btnPublishTeam.setOnClickListener { onPublishClick.invoke(team) }
+                }else {
+                    holder.btnPublishTeam.visibility = View.GONE
+                }
             }
         }
 
-        // 2. Iterar sobre los 6 espacios de imagen
+
         for (i in 0 until 6) {
             val imgView = holder.imageViews[i]
             val pokemonData = team.pokemons.getOrNull(i)

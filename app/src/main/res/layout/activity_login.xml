@@ -1,74 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121212"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:background="#0A0A0A"> <!-- Fondo negro superior -->
 
+    <!-- Título Superior -->
     <TextView
+        android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="AtackDeck Login"
+        android:layout_marginTop="32dp"
+        android:text="Welcome to AtackDeck"
         android:textColor="@color/white"
-        android:textSize="28sp"
+        android:textSize="26sp"
         android:textStyle="bold"
-        android:layout_marginBottom="32dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/etEmail"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/bg_rounded_item"
-        android:hint="Correo electrónico"
-        android:textColor="@color/white"
-        android:textColorHint="#9CA3AF"
-        android:padding="12dp"
-        android:layout_marginBottom="16dp"/>
-
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/bg_rounded_item"
-        android:hint="Contraseña"
-        android:inputType="textPassword"
-        android:textColor="@color/white"
-        android:textColorHint="#9CA3AF"
-        android:padding="12dp"
-        android:layout_marginBottom="24dp"/>
-
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#881337"
-        android:text="Iniciar Sesión" />
-
-    <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#262530"
-        android:layout_marginTop="8dp"
-        android:text="Crear Cuenta Nueva" />
-    <!-- Debajo de tu btnRegister, agrega esto: -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="O ingresa con"
-        android:textColor="#9CA3AF"
-        android:gravity="center"
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"/>
+        android:src="@drawable/ic_search_pokemon"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/tvWelcome" />
 
-    <Button
-        android:id="@+id/btnGoogleLogin"
+    <!-- Contenedor Inferior Gris Oscuro -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#FFFFFF"
-        android:textColor="#121212"
-        android:text="Continuar con Google"
-         />
-</LinearLayout>
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_login_bottom"
+        android:orientation="vertical"
+        android:paddingHorizontal="32dp"
+        android:paddingTop="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgLogo">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:gravity="center"
+            android:text="Login"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <!-- Sección Email -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"
+            android:text="Email"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_input_dark"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/white" />
+
+        <!-- Sección Password -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"
+            android:text="Password"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/bg_input_dark"
+            android:inputType="textPassword"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/white" />
+
+        <!-- Botón Login -->
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_button_dark"
+            android:text="Login"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+
+        <!-- Botón Google -->
+        <ImageButton
+            android:id="@+id/btnGoogleLogin"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_circle_dark"
+            android:padding="12dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/google" /> <!-- Requiere ícono de Google en drawables -->
+
+        <!-- Botón SignUp -->
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/bg_button_dark"
+            android:text="SignUp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

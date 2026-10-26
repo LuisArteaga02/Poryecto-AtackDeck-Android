@@ -8,6 +8,9 @@ import com.example.proyecto_atackdeck_android.model.TeamPokemon
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.Query
+
 
 class PokemonRepository {
 
@@ -29,12 +32,113 @@ class PokemonRepository {
         }
     }
 
+    suspend fun uploadCommunityTeam(teamName: String, description: String, pokemonsList: List<TeamPokemon>): Boolean {
+        val currentUser = auth.currentUser ?: return false
+
+        return try {
+            val teamRef = db.collection("community_teams").document()
+
+
+            val userProfileSnap = db.collection("users_profiles").document(currentUser.uid).get().await()
+            val userName = userProfileSnap.getString("userName") ?: currentUser.email?.substringBefore("@") ?: "Usuario"
+
+            val communityTeam = com.example.proyecto_atackdeck_android.model.CommunityTeam(
+                teamId = teamRef.id,
+                userId = currentUser.uid,
+                userName = userName,
+                teamName = teamName,
+                description = description,
+                pokemons = pokemonsList,
+                score = 0,
+                upvotedBy = emptyList(),
+                downvotedBy = emptyList()
+            )
+
+            teamRef.set(communityTeam).await()
+            true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
+        }
+    }
+    suspend fun getCommunityTeams(): List<com.example.proyecto_atackdeck_android.model.CommunityTeam> {
+        return try {
+            val snapshot = db.collection("community_teams")
+                .orderBy("score", Query.Direction.DESCENDING) // Ordena por los más votados primero
+                .get()
+                .await()
+
+            snapshot.toObjects(com.example.proyecto_atackdeck_android.model.CommunityTeam::class.java)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emptyList()
+        }
+    }
+
+    suspend fun voteOnCommunityTeam(teamId: String, isUpvote: Boolean): Boolean {
+        val currentUser = auth.currentUser ?: return false
+        val userId = currentUser.uid
+        val docRef = db.collection("community_teams").document(teamId)
+
+        return try {
+            db.runTransaction { transaction ->
+                val snapshot = transaction.get(docRef)
+
+
+                val upvotedBy = snapshot.get("upvotedBy") as? List<String> ?: emptyList()
+                val downvotedBy = snapshot.get("downvotedBy") as? List<String> ?: emptyList()
+
+                var scoreChange = 0L
+
+                if (isUpvote) {
+                    if (userId in upvotedBy) {
+                        // Si ya le había dado Upvote, se lo quitamos (lo deja neutral)
+                        transaction.update(docRef, "upvotedBy", FieldValue.arrayRemove(userId))
+                        scoreChange = -1L
+                    } else {
+                        // Le damos Upvote
+                        transaction.update(docRef, "upvotedBy", FieldValue.arrayUnion(userId))
+                        scoreChange = 1L
+                        if (userId in downvotedBy) {
+                            // Si antes le había dado Downvote, lo quitamos
+                            transaction.update(docRef, "downvotedBy", FieldValue.arrayRemove(userId))
+                            scoreChange = 2L
+                        }
+                    }
+                } else {
+
+                    if (userId in downvotedBy) {
+
+                        transaction.update(docRef, "downvotedBy", FieldValue.arrayRemove(userId))
+                        scoreChange = 1L
+                    } else {
+
+                        transaction.update(docRef, "downvotedBy", FieldValue.arrayUnion(userId))
+                        scoreChange = -1L
+                        if (userId in upvotedBy) {
+
+                            transaction.update(docRef, "upvotedBy", FieldValue.arrayRemove(userId))
+                            scoreChange = -2L
+                        }
+                    }
+                }
+
+
+                transaction.update(docRef, "score", FieldValue.increment(scoreChange))
+            }.await()
+            true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
+        }
+    }
+
     suspend fun saveUserTeam(teamName: String, pokemonsList: List<TeamPokemon>): Boolean {
         val currentUser = auth.currentUser ?: return false
         val userId = currentUser.uid
 
         return try {
-            // Creamos una referencia con ID automático dentro de la subcolección del usuario
+
             val teamRef = db.collection("users_profiles")
                 .document(userId)
                 .collection("user_teams")

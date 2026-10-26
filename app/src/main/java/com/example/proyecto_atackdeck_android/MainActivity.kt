@@ -74,19 +74,27 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, MetaTeamsActivity::class.java)
             startActivity(intent)
         }
+        binding.btnCommunityTeams.setOnClickListener {
+            val intent = Intent(this@MainActivity, CommunityTeamsActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnHelp.setOnClickListener {
+            val intent = Intent(this@MainActivity, HelpActivity::class.java)
+            startActivity(intent)
+        }
 
 
-        BottomNavHelper.setupBottomNav(
-            activity = this,
-            bottomNavigationView = binding.includedBottomNav.root,
-            currentItemId = R.id.nav_home
-        )
 
 
     }
     override fun onResume() {
         super.onResume()
         cargarDatosDelPerfil()
+        BottomNavHelper.setupBottomNav(
+            activity = this,
+            bottomNavigationView = binding.includedBottomNav.root,
+            currentItemId = R.id.nav_home
+        )
     }
 
     private fun loadMetaTeams() {
