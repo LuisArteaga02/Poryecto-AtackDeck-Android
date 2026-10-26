@@ -6,10 +6,13 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.graphics.toColorInt
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -18,7 +21,7 @@ import com.example.proyecto_atackdeck_android.databinding.ActivityPokemonDetailB
 import com.example.proyecto_atackdeck_android.model.TeamPokemon
 import com.example.proyecto_atackdeck_android.model.UserTeam
 import com.example.proyecto_atackdeck_android.repository.PokemonRepository
-import com.example.proyecto_atackdeck_android.util.toNaturalFormat
+import com.example.proyecto_atackdeck_android.util.toPokeFormat
 import kotlinx.coroutines.launch
 
 
@@ -34,8 +37,16 @@ class PokemonDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityPokemonDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
+
         binding.btnVolver.setOnClickListener { finish() }
         binding.btnAddToTeam.isEnabled = false
         binding.btnAddToTeam.setOnClickListener {
@@ -84,7 +95,7 @@ class PokemonDetailActivity : AppCompatActivity() {
 
                     // 3. LLENAMOS LA PANTALLA
                     binding.tvId.text = "#${pokemon.id.toString().padStart(3, '0')}"
-                    binding.tvName.text = pokemon.name.replaceFirstChar { it.uppercase() }
+                    binding.tvName.text = pokemon.name.toPokeFormat()
 
                     val heightM = pokemon.height / 10.0
                     binding.tvHeight.text = "${"%.1f".format(heightM)} m"
@@ -119,7 +130,7 @@ class PokemonDetailActivity : AppCompatActivity() {
                     listOf(binding.tvAbility1, binding.tvAbility2, binding.tvAbility3).forEachIndexed { i, tv ->
                         val hab = habilidades.getOrNull(i)
                         tv.visibility = if (hab != null) View.VISIBLE else View.GONE
-                        hab?.let { tv.text = if (it.isHidden) "${it.ability.name.toNaturalFormat()} (hidden)" else it.ability.name.toNaturalFormat() }
+                        hab?.let { tv.text = "${it.ability.name.toPokeFormat()}${if (it.isHidden) " (hidden)" else ""}" }
                     }
 
                     // Stats base
@@ -150,10 +161,7 @@ class PokemonDetailActivity : AppCompatActivity() {
                         stat?.let {
                             bar.backgroundTintList = ColorStateList.valueOf(getStatBarColor(it.baseStat))
                             bar.updateLayoutParams<ConstraintLayout.LayoutParams> {
-                                val p = if (it.baseStat >= 200) 1.0f else it.baseStat / 200f
-                                width = ConstraintLayout.LayoutParams.MATCH_CONSTRAINT
-                                matchConstraintPercentWidth = p
-                                Log.println(Log.INFO, null, matchConstraintPercentWidth.toString())
+                                matchConstraintPercentWidth = if (it.baseStat >= 200) 1.0f else it.baseStat / 200f
                             }
                         }
                     }

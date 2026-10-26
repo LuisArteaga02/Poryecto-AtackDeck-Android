@@ -6,7 +6,10 @@
     <solid android:color="#000" />
 
     <!-- Radio de las esquinas -->
-    <corners android:radius="16dp" />
+    <corners android:topLeftRadius="0dp"
+        android:topRightRadius="0dp"
+        android:bottomLeftRadius="16dp"
+        android:bottomRightRadius="16dp" />
 
     <!-- Opcional: Borde o trazo -->
 
