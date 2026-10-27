@@ -1,0 +1,50 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="16.067656"
+    android:viewportHeight="15.285264"
+    android:tint="@color/white"> <!-- Puedes quitar esta línea si lo quieres en negro -->
+
+    <!-- Grupo principal que centra el dibujo en el viewport original -->
+    <group
+        android:translateX="-97.558475"
+        android:translateY="-131.67072">
+
+        <!-- Lupa exterior -->
+        <path
+            android:fillColor="#000000"
+            android:strokeWidth="0.264583"
+            android:pathData="m 106.77178,133.89157 c -2.4815,0 -4.49792,2.01641 -4.49792,4.49792 0,2.4815 2.01642,4.49791 4.49792,4.49791 0.98185,0 1.88929,-0.31626 2.62929,-0.85163 l 3.48093,3.47266 0.74414,-0.74414 -3.43958,-3.44785 c 0.67592,-0.78755 1.08313,-1.80971 1.08313,-2.92695 0,-2.48151 -2.01641,-4.49792 -4.49791,-4.49792 z m 0,0.52917 c 2.19521,0 3.96875,1.77353 3.96875,3.96875 0,2.19521 -1.77354,3.96875 -3.96875,3.96875 -2.19522,0 -3.96875,-1.77354 -3.96875,-3.96875 0,-2.19522 1.77353,-3.96875 3.96875,-3.96875 z" />
+
+        <!-- Explosión / Destello trasero -->
+        <path
+            android:fillColor="#000000"
+            android:strokeWidth="0.264583"
+            android:pathData="m 103.98685,141.86742 -1.1576,4.08854 -0.4926,-4.50725 -3.103347,2.26594 1.527047,-3.79298 -3.20187,-0.86205 3.12798,-1.52704 -2.14279,-3.15261 3.69446,0.78815 -0.0985,-3.12798 2.06891,2.29057 0.81278,-2.66001 1.72408,2.36445 -1.74871,0.44334 -1.37927,0.86204 -0.81278,1.60094 -0.29556,1.52704 0.22167,1.42853 0.61574,1.05908 z" />
+
+        <!-- Anillo interior principal -->
+        <path
+            android:strokeColor="#000000"
+            android:strokeWidth="0.762"
+            android:pathData="M 106.86378,135.2204 A 3.1661215,3.0877502 0 1,1 106.86378,141.3959 A 3.1661215,3.0877502 0 1,1 106.86378,135.2204" />
+
+        <!-- Círculo central (Botón de la Pokéball con rotación original) -->
+        <group android:rotation="100.5798">
+            <path
+                android:strokeColor="#000000"
+                android:strokeWidth="0.750564"
+                android:pathData="M 116.34193,-131.6001246 A 1.0774189,1.0619346 0 1,1 116.34193,-129.4762554 A 1.0774189,1.0619346 0 1,1 116.34193,-131.6001246" />
+        </group>
+
+        <!-- Líneas divisorias de la Pokéball -->
+        <path
+            android:strokeColor="#000000"
+            android:strokeWidth="0.762"
+            android:pathData="m 108.08351,138.56409 1.86226,-0.0765" />
+        <path
+            android:strokeColor="#000000"
+            android:strokeWidth="0.762"
+            android:pathData="m 103.83342,138.68257 2.00283,-0.0871" />
+
+    </group>
+</vector>

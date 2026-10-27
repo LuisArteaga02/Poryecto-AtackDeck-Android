@@ -2,18 +2,199 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="#121212"
+    tools:context=".activity.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- ScrollView para scroll vertical sin cortar en pantallas pequeñas -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@+id/includedBottomNav"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <!-- Botón de Ayuda (?) -->
+
+            <!-- Saludo al usuario -->
+            <TextView
+                android:id="@+id/btnHelp"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_circle_dark"
+                android:gravity="center"
+                android:text="?"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- SECCIÓN 1: Pokemon Ranking -->
+            <TextView
+                android:id="@+id/tvWelcome"
+                android:layout_width="361dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="8dp"
+                android:text="Welcome, "
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnHelp" />
+
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardRanking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:cardBackgroundColor="#1A1921"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:layout_constraintTop_toBottomOf="@id/tvWelcome">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pokemon Ranking (Meta)"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <!-- RECYCLERVIEW: Aquí se mostrarán los datos de Firebase -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvMetaPokemons"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:nestedScrollingEnabled="false"
+                        tools:listitem="@layout/item_pokemon_ranking"
+                        tools:itemCount="3" />
+
+                    <!-- Botón View More -->
+                    <Button
+                        android:id="@+id/btnViewMoreRanking"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"
+                        android:backgroundTint="#262530"
+                        android:gravity="center"
+                        android:paddingVertical="8dp"
+                        android:text="View More..."
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- SECCIÓN 2: Pokemon Champions -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardChampions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#1A1921"
+                app:cardCornerRadius="20dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@id/cardRanking">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Meta Teams(Pokemon Champions)"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+
+
+                    <!-- Header Campeones -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvMetaTeams"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:nestedScrollingEnabled="false"
+                            tools:listitem="@layout/item_meta_team"
+                            tools:itemCount="3" />
+
+                    </LinearLayout>
+
+
+                    <!-- Botón See More Meta Teams -->
+                    <TextView
+                        android:id="@+id/btnViewMoreTeams"
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/bg_rounded_button"
+                        android:gravity="center"
+                        android:paddingVertical="8dp"
+                        android:text="See More Meta Teams..."
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnCommunityTeams"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/bg_rounded_button"
+                        android:backgroundTint="#3B82F6"
+                        android:gravity="center"
+                        android:paddingVertical="12dp"
+                        android:text="Ver Equipos de la Comunidad"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+    <include
+        android:id="@+id/includedBottomNav"
+        layout="@layout/layout_bottom_nav"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

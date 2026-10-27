@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "181241857130",
+    "project_id": "atackdeck",
+    "storage_bucket": "atackdeck.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181241857130:android:e3922dffe28e728afcb613",
+        "android_client_info": {
+          "package_name": "com.example.proyecto_atackdeck_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "181241857130-bbcqelcv7kg76je8e3am20vlj931papl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.proyecto_atackdeck_android",
+            "certificate_hash": "52e39c95c041f42b83d823a7cd034f386a541779"
+          }
+        },
+        {
+          "client_id": "181241857130-h751r1910bfbkvi1ddj3tva1mttknoi2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiMOzTF1UtcWmCacGPyC8FBZt2iNOSZpE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "181241857130-h751r1910bfbkvi1ddj3tva1mttknoi2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/baseline_catching_pokemon_24"
+        android:title="Home" />
+    <item
+        android:id="@+id/nav_search"
+        android:icon="@drawable/ic_search_pokemon"
+        android:title="Search" />
+    <item
+        android:id="@+id/nav_user_deck"
+        android:icon="@drawable/outline_accessibility_24"
+        android:title="UserDeck" />
+</menu>
