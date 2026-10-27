@@ -1,4 +1,4 @@
-package com.example.proyecto_atackdeck_android
+package com.example.proyecto_atackdeck_android.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.proyecto_atackdeck_android.adapter.RankingAdapter
 import com.example.proyecto_atackdeck_android.databinding.ActivityMetaPokemonBinding // <-- Nombre corregido
 import com.example.proyecto_atackdeck_android.repository.PokemonRepository
 import kotlinx.coroutines.launch
@@ -50,7 +51,10 @@ class MetaPokemonActivity : AppCompatActivity() {
             // Instanciamos el Adapter pasándole la lista
             rankingAdapter = RankingAdapter(listaPokemons) { pokemonSeleccionado ->
                 val intent = Intent(this@MetaPokemonActivity, PokemonDetailActivity::class.java)
-                intent.putExtra(PokemonDetailActivity.EXTRA_POKEMON_ID, pokemonSeleccionado.pokemonId)
+                intent.putExtra(
+                    PokemonDetailActivity.EXTRA_POKEMON_ID,
+                    pokemonSeleccionado.pokemonId
+                )
                 startActivity(intent)
             }
 

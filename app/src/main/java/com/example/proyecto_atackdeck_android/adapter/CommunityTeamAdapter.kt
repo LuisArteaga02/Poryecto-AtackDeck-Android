@@ -1,4 +1,4 @@
-package com.example.proyecto_atackdeck_android
+package com.example.proyecto_atackdeck_android.adapter
 
 import android.content.res.ColorStateList
 import android.graphics.Color
@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.proyecto_atackdeck_android.R
 import com.example.proyecto_atackdeck_android.model.CommunityTeam
 
 class CommunityTeamAdapter(

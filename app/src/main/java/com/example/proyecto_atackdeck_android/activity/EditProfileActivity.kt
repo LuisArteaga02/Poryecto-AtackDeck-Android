@@ -1,4 +1,4 @@
-package com.example.proyecto_atackdeck_android
+package com.example.proyecto_atackdeck_android.activity
 
 import android.os.Bundle
 import android.widget.Toast
@@ -6,8 +6,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.proyecto_atackdeck_android.adapter.AvatarAdapter
 import com.example.proyecto_atackdeck_android.databinding.ActivityEditProfileBinding
-import com.example.proyecto_atackdeck_android.BottomNavHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 

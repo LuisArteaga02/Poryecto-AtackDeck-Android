@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoAtackDeckAndroid">
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -24,44 +24,47 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PokemonDetailActivity"
+            android:name=".activity.PokemonDetailActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".MetaPokemonActivity"
+            android:name=".activity.MetaPokemonActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".SearchActivity" />
-        <activity android:name=".GenerationListActivity" />
+        <activity android:name=".activity.SearchActivity" />
+        <activity android:name=".activity.GenerationListActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".UserDeckActivity" />
+        <activity android:name=".activity.UserDeckActivity" />
         <activity
-            android:name=".EditProfileActivity"
+            android:name=".activity.EditProfileActivity"
             android:exported="false"
             android:theme="@style/Theme.ProyectoAtackDeckAndroid"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".EditUserTeamActivity"
+            android:name=".activity.EditUserTeamActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".MetaTeamsActivity"
+            android:name=".activity.MetaTeamsActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".CommunityTeamActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
-
         <activity
-            android:name=".HelpActivity"
+            android:name=".activity.HelpActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".CommunityTeamsActivity"
+            android:name=".activity.CommunityTeamsActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activity.MoveDetailsActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>

@@ -1,5 +1,6 @@
-package com.example.proyecto_atackdeck_android
+package com.example.proyecto_atackdeck_android.activity
 
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
@@ -15,7 +16,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.proyecto_atackdeck_android.adapter.MoveSlotAdapter
 import com.example.proyecto_atackdeck_android.api.RetrofitInstance
 import com.example.proyecto_atackdeck_android.databinding.ActivityPokemonDetailBinding
 import com.example.proyecto_atackdeck_android.model.TeamPokemon
@@ -29,6 +32,7 @@ class PokemonDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPokemonDetailBinding
     private var pokemonActualParaGuardar: TeamPokemon? = null
+    private lateinit var moveAdapter: MoveSlotAdapter
 
     companion object {
         const val EXTRA_POKEMON_ID = "pokemon_id" // clave para recibir el ID
@@ -45,7 +49,6 @@ class PokemonDetailActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
 
         binding.btnVolver.setOnClickListener { finish() }
         binding.btnAddToTeam.isEnabled = false
@@ -64,8 +67,6 @@ class PokemonDetailActivity : AppCompatActivity() {
             Toast.makeText(this, "Error: Pokémon no recibido", Toast.LENGTH_SHORT).show()
             finish()
         }
-
-
     }
 
     private fun descargarDatosPokemon(nombre: String?, id: Int) {
@@ -173,6 +174,16 @@ class PokemonDetailActivity : AppCompatActivity() {
                             .load(spriteUrl)
                             .into(binding.imgSprite)
                     }
+
+                    // Movimientos
+                    val moves = pokemon.moves
+                    moveAdapter = MoveSlotAdapter { name ->
+                        val intent = Intent(this@PokemonDetailActivity, MoveDetailsActivity::class.java)
+                        intent.putExtra("moveName", name)
+                        startActivity(intent)
+                    }
+                    binding.rvMoves.adapter = moveAdapter
+                    moveAdapter.submitList(pokemon.moves)
 
                 } else {
                     if (response.code() == 404 && nombre != null) {
@@ -298,7 +309,6 @@ class PokemonDetailActivity : AppCompatActivity() {
             }
         }
     }
-
 
     private fun getColorByType(type: String): Int {
         return when (type.lowercase()) {

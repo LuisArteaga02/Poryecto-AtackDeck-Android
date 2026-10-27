@@ -1,12 +1,12 @@
-package com.example.proyecto_atackdeck_android
+package com.example.proyecto_atackdeck_android.activity
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.proyecto_atackdeck_android.databinding.ActivityLoginBinding
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.proyecto_atackdeck_android.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -21,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var googleSignInClient: GoogleSignInClient
 
     private val googleSignInLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
+        if (result.resultCode == RESULT_OK) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
             try {
                 // Cuenta de Google seleccionada con éxito, ahora validamos con Firebase

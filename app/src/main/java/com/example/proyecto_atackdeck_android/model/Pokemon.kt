@@ -12,7 +12,8 @@ data class Pokemon(
     val abilities: List<AbilitySlot>,
     val stats: List<Stat>, // HP, Attack, Defense, Sp. Attack, Sp. Defense, Speed, Total
     val genderRate: Int,
-    val sprites: Sprites
+    val sprites: Sprites,
+    val moves: List<MoveSlot>
 )
 
 data class TypeSlot(
@@ -44,4 +45,13 @@ data class Stat(
 data class Sprites(
     @SerializedName("front_default")
     val frontDefault: String?
+)
+
+data class MoveSlot(
+    val move: Move
+)
+
+data class Move(
+    val name: String,
+    val url: String
 )

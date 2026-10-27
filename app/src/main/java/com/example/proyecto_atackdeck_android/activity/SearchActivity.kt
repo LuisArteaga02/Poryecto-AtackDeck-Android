@@ -1,6 +1,5 @@
-package com.example.proyecto_atackdeck_android
+package com.example.proyecto_atackdeck_android.activity
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
@@ -12,10 +11,10 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
-import com.example.proyecto_atackdeck_android.api.ApiPokemon
 import androidx.core.view.WindowInsetsCompat
+import com.example.proyecto_atackdeck_android.util.BottomNavHelper
+import com.example.proyecto_atackdeck_android.R
 import com.example.proyecto_atackdeck_android.databinding.ActivitySearchBinding
-import com.example.proyecto_atackdeck_android.BottomNavHelper
 import com.example.proyecto_atackdeck_android.api.RetrofitInstance
 
 class SearchActivity : AppCompatActivity() {
@@ -42,7 +41,7 @@ class SearchActivity : AppCompatActivity() {
                 realizarBusqueda()
 
                 // Ocultamos el teclado virtual
-                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(view.windowToken, 0)
 
                 return@setOnEditorActionListener true
@@ -111,7 +110,7 @@ class SearchActivity : AppCompatActivity() {
 
                     binding.etSearch.setOnItemClickListener { parent, view, position, id ->
 
-                        val imm = getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
+                        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                         imm.hideSoftInputFromWindow(binding.etSearch.windowToken, 0)
 
 

@@ -54,4 +54,6 @@
     <string name="statValue">100</string>
     <string name="movesTitle">Moves</string>
     <string name="addToTeamHint">Add to team</string>
+    <string name="artworkDescription">Artwork</string>
+    <string name="pokemonName">Bulbasaur</string>
 </resources>

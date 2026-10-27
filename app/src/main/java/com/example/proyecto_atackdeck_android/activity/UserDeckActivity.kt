@@ -1,19 +1,24 @@
-package com.example.proyecto_atackdeck_android
+package com.example.proyecto_atackdeck_android.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.proyecto_atackdeck_android.databinding.ActivityUserDeckBinding
-import com.example.proyecto_atackdeck_android.BottomNavHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.proyecto_atackdeck_android.util.BottomNavHelper
+import com.example.proyecto_atackdeck_android.R
+import com.example.proyecto_atackdeck_android.adapter.TeamAdapter
+import com.example.proyecto_atackdeck_android.model.UserTeam
 import com.example.proyecto_atackdeck_android.repository.PokemonRepository
 
 
@@ -98,10 +103,18 @@ class UserDeckActivity : AppCompatActivity() {
                     lifecycleScope.launch {
                         val exito = repository.deleteUserTeam(equipoABorrar.teamId)
                         if (exito) {
-                            Toast.makeText(this@UserDeckActivity, "Equipo eliminado", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this@UserDeckActivity,
+                                "Equipo eliminado",
+                                Toast.LENGTH_SHORT
+                            ).show()
                             loadUserTeams() // Recargamos la lista
                         } else {
-                            Toast.makeText(this@UserDeckActivity, "Error al eliminar", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this@UserDeckActivity,
+                                "Error al eliminar",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
                 },
@@ -116,11 +129,11 @@ class UserDeckActivity : AppCompatActivity() {
         }
     }
 
-    private fun mostrarDialogoPublicar(equipo: com.example.proyecto_atackdeck_android.model.UserTeam, repository: PokemonRepository) {
-        val input = android.widget.EditText(this)
+    private fun mostrarDialogoPublicar(equipo: UserTeam, repository: PokemonRepository) {
+        val input = EditText(this)
         input.hint = "Escribe una breve descripción o estrategia..."
 
-        androidx.appcompat.app.AlertDialog.Builder(this)
+        AlertDialog.Builder(this)
             .setTitle("Publicar Equipo")
             .setMessage("Comparte tu equipo '${equipo.teamName}' con la comunidad.")
             .setView(input)

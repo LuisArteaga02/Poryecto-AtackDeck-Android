@@ -1,4 +1,4 @@
-package com.example.proyecto_atackdeck_android
+package com.example.proyecto_atackdeck_android.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.proyecto_atackdeck_android.adapter.CommunityTeamAdapter
 import com.example.proyecto_atackdeck_android.databinding.ActivityCommunityTeamsBinding
 import com.example.proyecto_atackdeck_android.repository.PokemonRepository
 import com.google.firebase.auth.FirebaseAuth
@@ -72,7 +73,8 @@ class CommunityTeamsActivity : AppCompatActivity() {
                         procesarVoto(teamClicked.teamId, isUpvote = false)
                     },
                     onPokemonClick = { pokemonId ->
-                        val intent = Intent(this@CommunityTeamsActivity, PokemonDetailActivity::class.java)
+                        val intent =
+                            Intent(this@CommunityTeamsActivity, PokemonDetailActivity::class.java)
                         intent.putExtra(PokemonDetailActivity.EXTRA_POKEMON_ID, pokemonId)
                         startActivity(intent)
                     }

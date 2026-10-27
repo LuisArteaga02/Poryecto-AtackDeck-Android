@@ -1,4 +1,4 @@
-package com.example.proyecto_atackdeck_android
+package com.example.proyecto_atackdeck_android.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.proyecto_atackdeck_android.adapter.TeamAdapter
 import com.example.proyecto_atackdeck_android.databinding.ActivityMetaTeamsBinding
 import com.example.proyecto_atackdeck_android.repository.PokemonRepository
 import kotlinx.coroutines.launch
@@ -54,7 +55,8 @@ class MetaTeamsActivity : AppCompatActivity() {
                 val adapter = TeamAdapter(
                     teamList = teamsList,
                     onPokemonClick = { pokemonId ->
-                        val intent = Intent(this@MetaTeamsActivity, PokemonDetailActivity::class.java)
+                        val intent =
+                            Intent(this@MetaTeamsActivity, PokemonDetailActivity::class.java)
                         intent.putExtra(PokemonDetailActivity.EXTRA_POKEMON_ID, pokemonId)
                         startActivity(intent)
                     },
@@ -62,9 +64,17 @@ class MetaTeamsActivity : AppCompatActivity() {
                         lifecycleScope.launch {
                             val exito = repository.saveMetaTeamToUser(metaTeamSeleccionado)
                             if (exito) {
-                                Toast.makeText(this@MetaTeamsActivity, "¡Equipo guardado en tu perfil!", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this@MetaTeamsActivity,
+                                    "¡Equipo guardado en tu perfil!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             } else {
-                                Toast.makeText(this@MetaTeamsActivity, "Error al guardar el equipo", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this@MetaTeamsActivity,
+                                    "Error al guardar el equipo",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
                     }

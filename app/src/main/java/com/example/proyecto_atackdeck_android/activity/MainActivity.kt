@@ -1,4 +1,4 @@
-package com.example.proyecto_atackdeck_android
+package com.example.proyecto_atackdeck_android.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,10 +9,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.proyecto_atackdeck_android.util.BottomNavHelper
+import com.example.proyecto_atackdeck_android.R
+import com.example.proyecto_atackdeck_android.adapter.RankingAdapter
+import com.example.proyecto_atackdeck_android.adapter.TeamAdapter
 import com.example.proyecto_atackdeck_android.databinding.ActivityMainBinding
 import com.example.proyecto_atackdeck_android.repository.PokemonRepository
-import com.example.proyecto_atackdeck_android.BottomNavHelper
-import com.example.proyecto_atackdeck_android.model.TeamPokemon
 import kotlinx.coroutines.launch
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -110,17 +112,25 @@ class MainActivity : AppCompatActivity() {
                     intent.putExtra(PokemonDetailActivity.EXTRA_POKEMON_ID, pokemonId)
                     startActivity(intent)
                 },
-            onSaveClick = { metaTeamSeleccionado ->
-                // Guardar el equipo meta en la cuenta del usuario actual
-                lifecycleScope.launch {
-                    val exito = repository.saveMetaTeamToUser(metaTeamSeleccionado)
-                    if (exito) {
-                        Toast.makeText(this@MainActivity, "¡Equipo guardado en tu perfil!", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(this@MainActivity, "Error al guardar el equipo", Toast.LENGTH_SHORT).show()
+                onSaveClick = { metaTeamSeleccionado ->
+                    // Guardar el equipo meta en la cuenta del usuario actual
+                    lifecycleScope.launch {
+                        val exito = repository.saveMetaTeamToUser(metaTeamSeleccionado)
+                        if (exito) {
+                            Toast.makeText(
+                                this@MainActivity,
+                                "¡Equipo guardado en tu perfil!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                this@MainActivity,
+                                "Error al guardar el equipo",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
-            }
             )
 
             // Asegúrate de tener un RecyclerView en tu XML con este ID o cámbialo al tuyo
@@ -163,7 +173,10 @@ class MainActivity : AppCompatActivity() {
             rankingAdapter = RankingAdapter(listaPokemons) { pokemonSeleccionado ->
                 // Este código se ejecuta cuando el usuario toca un elemento de la lista
                 val intent = Intent(this@MainActivity, PokemonDetailActivity::class.java)
-                intent.putExtra(PokemonDetailActivity.EXTRA_POKEMON_ID, pokemonSeleccionado.pokemonId)
+                intent.putExtra(
+                    PokemonDetailActivity.EXTRA_POKEMON_ID,
+                    pokemonSeleccionado.pokemonId
+                )
                 startActivity(intent)
             }
 

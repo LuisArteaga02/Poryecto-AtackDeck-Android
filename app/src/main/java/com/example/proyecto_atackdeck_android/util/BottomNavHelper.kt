@@ -1,12 +1,12 @@
-package com.example.proyecto_atackdeck_android
+package com.example.proyecto_atackdeck_android.util
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
-import com.example.proyecto_atackdeck_android.MainActivity
-import com.example.proyecto_atackdeck_android.MetaPokemonActivity
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.example.proyecto_atackdeck_android.R
-import com.example.proyecto_atackdeck_android.SearchActivity
+import com.example.proyecto_atackdeck_android.activity.MainActivity
+import com.example.proyecto_atackdeck_android.activity.SearchActivity
+import com.example.proyecto_atackdeck_android.activity.UserDeckActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 object BottomNavHelper {
     fun setupBottomNav(activity: AppCompatActivity, bottomNavigationView: BottomNavigationView, currentItemId: Int) {

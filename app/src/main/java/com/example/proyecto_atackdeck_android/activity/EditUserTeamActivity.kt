@@ -1,4 +1,4 @@
-package com.example.proyecto_atackdeck_android
+package com.example.proyecto_atackdeck_android.activity
 
 import android.os.Bundle
 import android.widget.Toast
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.proyecto_atackdeck_android.adapter.EditTeamAdapter
 import com.example.proyecto_atackdeck_android.databinding.ActivityEditUserTeamBinding
 import com.example.proyecto_atackdeck_android.model.TeamPokemon
 import com.example.proyecto_atackdeck_android.repository.PokemonRepository

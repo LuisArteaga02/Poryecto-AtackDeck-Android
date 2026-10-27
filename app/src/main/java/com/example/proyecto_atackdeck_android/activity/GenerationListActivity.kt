@@ -1,4 +1,4 @@
-package com.example.proyecto_atackdeck_android
+package com.example.proyecto_atackdeck_android.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.proyecto_atackdeck_android.adapter.GenerationAdapter
 import com.example.proyecto_atackdeck_android.api.RetrofitInstance
 import com.example.proyecto_atackdeck_android.databinding.ActivityGenerationListBinding
 import kotlinx.coroutines.launch
@@ -63,7 +64,8 @@ class GenerationListActivity : AppCompatActivity() {
                     // Configuramos el Adapter
                     adapter = GenerationAdapter(sortedList) { pokemonId ->
                         // Al hacer clic, vamos a PokemonDetailActivity pasándole el ID
-                        val intent = Intent(this@GenerationListActivity, PokemonDetailActivity::class.java)
+                        val intent =
+                            Intent(this@GenerationListActivity, PokemonDetailActivity::class.java)
                         intent.putExtra(PokemonDetailActivity.EXTRA_POKEMON_ID, pokemonId)
                         startActivity(intent)
                     }
