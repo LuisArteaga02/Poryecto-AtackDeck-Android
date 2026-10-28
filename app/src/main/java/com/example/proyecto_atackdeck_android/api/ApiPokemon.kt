@@ -18,8 +18,8 @@ interface ApiPokemon {
     suspend fun getPokemonByName(@Path("name") name: String): Response<Pokemon>
     @GET("generation/{id}")
     suspend fun getGeneration(@Path("id") id: Int): Response<Generation>
-    @GET("move/{name}")
-    suspend fun getMoveByName(@Path("name") name: String): Response<MoveDetail>
+    @GET("move/{id}")
+    suspend fun getMoveById(@Path("id") id: Int): Response<MoveDetail>
 
     data class PokemonListResponse(
         val results: List<PokemonName>

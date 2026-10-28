@@ -176,10 +176,9 @@ class PokemonDetailActivity : AppCompatActivity() {
                     }
 
                     // Movimientos
-                    val moves = pokemon.moves
-                    moveAdapter = MoveSlotAdapter { name ->
+                    moveAdapter = MoveSlotAdapter { id ->
                         val intent = Intent(this@PokemonDetailActivity, MoveDetailsActivity::class.java)
-                        intent.putExtra("moveName", name)
+                        intent.putExtra(MoveDetailsActivity.EXTRA_MOVE_ID, id)
                         startActivity(intent)
                     }
                     binding.rvMoves.adapter = moveAdapter

@@ -67,9 +67,7 @@
     <string name="move_label_bp">Base power</string>
     <string name="move_label_accuracy">Accuracy</string>
     <string name="move_label_pp">PP</string>
-    <string name="move_label_generation">Introduced</string>
     <string name="move_label_priority">Priority</string>
     <string name="move_label_effect">Effect</string>
-    <string name="move_label_learnt_lvl">Learnt by level</string>
-    <string name="move_label_learnt_tm">Learnt by TM</string>
+    <string name="move_label_learnt">Pokémon that learn it</string>
 </resources>

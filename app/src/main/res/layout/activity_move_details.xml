@@ -8,7 +8,7 @@
     android:background="#121212"
     tools:context=".activity.MoveDetailsActivity">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -97,16 +97,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:text="@string/value_placeholder" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/move_label_generation"/>
-                <TextView
-                    android:id="@+id/tvGen"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:text="@string/value_placeholder" />
             </GridLayout>
             <TextView
                 android:layout_width="wrap_content"
@@ -115,12 +105,13 @@
                 android:layout_marginTop="@dimen/default_spacing"
                 android:padding="12dp"
                 android:text="@string/move_label_effect"
-                android:textSize="@dimen/text_size_h2" />
+                android:textSize="@dimen/text_size_h2"
+                android:textStyle="bold" />
             <TextView
                 android:id="@+id/tvEffect"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
+                android:paddingHorizontal="12dp"
                 android:text="@string/value_placeholder" />
             <TextView
                 android:layout_width="wrap_content"
@@ -128,8 +119,9 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/default_spacing"
                 android:padding="12dp"
-                android:text="@string/move_label_learnt_lvl"
-                android:textSize="@dimen/text_size_h2" />
+                android:text="@string/move_label_learnt"
+                android:textSize="@dimen/text_size_h2"
+                android:textStyle="bold" />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvLearntLevel"
                 android:layout_width="match_parent"
@@ -138,24 +130,8 @@
                 android:nestedScrollingEnabled="false"
                 tools:listitem="@layout/item_pokemon_list"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/default_spacing"
-                android:padding="12dp"
-                android:text="@string/move_label_learnt_tm"
-                android:textSize="@dimen/text_size_h2" />
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvLearntTM"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clipToPadding="false"
-                android:nestedScrollingEnabled="false"
-                tools:listitem="@layout/item_pokemon_list"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <TextView
         android:id="@+id/btnVolver"

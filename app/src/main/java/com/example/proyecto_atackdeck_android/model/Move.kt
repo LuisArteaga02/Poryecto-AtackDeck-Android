@@ -11,16 +11,13 @@ data class MoveDetail(
     val accuracy: Int,
     val pp: Int,
     val priority: Int,
-    val generation: Gen,
     @SerializedName("effect_entries")
-    val effectEntries: List<EffectEntry>
+    val effectEntries: List<EffectEntry>,
+    @SerializedName("learned_by_pokemon")
+    val learnedBy: List<PokemonSpecies>
 )
 
 data class Category(
-    val name: String
-)
-
-data class Gen(
     val name: String
 )
 

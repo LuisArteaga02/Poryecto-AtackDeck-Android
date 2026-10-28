@@ -10,14 +10,16 @@ import com.example.proyecto_atackdeck_android.model.MoveSlot
 import com.example.proyecto_atackdeck_android.util.toPokeFormat
 
 class MoveSlotAdapter(
-    private val onItemClick: (String) -> Unit
-) : ListAdapter<MoveSlot, MoveSlotAdapter.MoveSlotViewHolder>(DiffCallback) {
+    private val onItemClick: (Int) -> Unit
+): ListAdapter<MoveSlot, MoveSlotAdapter.MoveSlotViewHolder>(DiffCallback) {
 
     inner class MoveSlotViewHolder(private val binding: ItemMoveBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(moveSlot: MoveSlot) {
             binding.tvMoveName.text = moveSlot.move.name.toPokeFormat()
-            binding.root.setOnClickListener { onItemClick(moveSlot.move.name) }
+            binding.root.setOnClickListener {
+                onItemClick(moveSlot.move.url.trimEnd('/').substringAfterLast("/").toInt())
+            }
         }
     }
 
