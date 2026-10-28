@@ -18,7 +18,7 @@
         android:gravity="center"
         android:paddingHorizontal="16dp"
         android:paddingVertical="12dp"
-        android:text="Back"
+        android:text="@string/action_back"
         android:textColor="@color/white"
         android:textSize="16sp"
 
@@ -165,6 +165,12 @@
     </ScrollView>
 
     <!-- Bottom Navigation Bar -->
+    <include
+        android:id="@+id/includedBottomNav"
+        layout="@layout/layout_bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
