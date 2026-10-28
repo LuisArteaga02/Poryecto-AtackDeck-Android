@@ -1,4 +1,6 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="default_spacing">15dp</dimen>
+    <dimen name="text_size_h1">22sp</dimen>
+    <dimen name="text_size_h2">20sp</dimen>
 </resources>

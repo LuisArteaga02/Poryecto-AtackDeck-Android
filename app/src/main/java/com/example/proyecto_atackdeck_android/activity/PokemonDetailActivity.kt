@@ -341,7 +341,7 @@ class PokemonDetailActivity : AppCompatActivity() {
             in 60 .. 89 -> "#FFDD57"
             in 90 .. 119 -> "#A0E515"
             in 120 .. 149 -> "#23CD5E"
-            in 150 .. 255 -> "00C2B8"
+            in 150 .. 255 -> "#00C2B8"
             else -> "#777777"
         }.toColorInt()
     }
