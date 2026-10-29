@@ -6,6 +6,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.proyecto_atackdeck_android.R
 import com.example.proyecto_atackdeck_android.adapter.EditTeamAdapter
 import com.example.proyecto_atackdeck_android.databinding.ActivityEditUserTeamBinding
 import com.example.proyecto_atackdeck_android.model.TeamPokemon
@@ -28,20 +29,20 @@ class EditUserTeamActivity : AppCompatActivity() {
         teamId = intent.getStringExtra("EXTRA_TEAM_ID") ?: ""
 
         if (teamId.isEmpty()) {
-            Toast.makeText(this, "Error al cargar el equipo", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.error_load, Toast.LENGTH_SHORT).show()
             finish()
             return
         }
         adapter = EditTeamAdapter(currentPokemons) { position, pokemon ->
             // Cuadro de confirmación antes de borrar
             AlertDialog.Builder(this)
-                .setTitle("Quitar Pokémon")
-                .setMessage("¿Deseas quitar a ${pokemon.name.uppercase()} del equipo?")
-                .setPositiveButton("Sí, quitar") { _, _ ->
+                .setTitle(R.string.team_alert_remove_title)
+                .setMessage(getString(R.string.team_alert_message, pokemon.name.uppercase()))
+                .setPositiveButton(R.string.action_yes) { _, _ ->
                     currentPokemons.removeAt(position) // Borramos localmente
                     adapter.updateList(currentPokemons) // Refrescamos la lista visual
                 }
-                .setNegativeButton("Cancelar", null)
+                .setNegativeButton(R.string.action_cancel, null)
                 .show()
         }
         binding.rvEditTeamPokemons.layoutManager = LinearLayoutManager(this)
@@ -66,7 +67,7 @@ class EditUserTeamActivity : AppCompatActivity() {
                 currentPokemons.addAll(team.pokemons)
                 adapter.updateList(currentPokemons)
             } else {
-                Toast.makeText(this@EditUserTeamActivity, "No se encontró el equipo", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@EditUserTeamActivity, R.string.team_notfound, Toast.LENGTH_SHORT).show()
                 finish()
             }
         }
@@ -75,17 +76,17 @@ class EditUserTeamActivity : AppCompatActivity() {
         val nuevoNombre = binding.etEditTeamName.text.toString().trim()
 
         if (nuevoNombre.isEmpty()) {
-            Toast.makeText(this, "El nombre del equipo no puede estar vacío", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.team_msg_empty, Toast.LENGTH_SHORT).show()
             return
         }
 
         lifecycleScope.launch {
             val exito = repository.updateTeamInfo(teamId, nuevoNombre, currentPokemons)
             if (exito) {
-                Toast.makeText(this@EditUserTeamActivity, "Equipo actualizado", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@EditUserTeamActivity, R.string.team_msg_updated, Toast.LENGTH_SHORT).show()
                 finish() // Regresa automáticamente al perfil
             } else {
-                Toast.makeText(this@EditUserTeamActivity, "Error al guardar cambios", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@EditUserTeamActivity, R.string.error_unexpected, Toast.LENGTH_SHORT).show()
             }
         }
     }

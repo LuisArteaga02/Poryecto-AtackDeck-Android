@@ -105,14 +105,14 @@ class UserDeckActivity : AppCompatActivity() {
                         if (exito) {
                             Toast.makeText(
                                 this@UserDeckActivity,
-                                "Equipo eliminado",
+                                R.string.deck_msg_deleted,
                                 Toast.LENGTH_SHORT
                             ).show()
                             loadUserTeams() // Recargamos la lista
                         } else {
                             Toast.makeText(
                                 this@UserDeckActivity,
-                                "Error al eliminar",
+                                R.string.deck_error_delete,
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
@@ -131,13 +131,13 @@ class UserDeckActivity : AppCompatActivity() {
 
     private fun mostrarDialogoPublicar(equipo: UserTeam, repository: PokemonRepository) {
         val input = EditText(this)
-        input.hint = "Escribe una breve descripción o estrategia..."
+        input.hint = R.string.deck_hint_description.toString()
 
         AlertDialog.Builder(this)
-            .setTitle("Publicar Equipo")
-            .setMessage("Comparte tu equipo '${equipo.teamName}' con la comunidad.")
+            .setTitle(R.string.deck_alert_publish_title)
+            .setMessage(R.string.deck_alert_publish_message)
             .setView(input)
-            .setPositiveButton("Publicar") { _, _ ->
+            .setPositiveButton(R.string.action_publish) { _, _ ->
                 val descripcion = input.text.toString().trim()
 
                 lifecycleScope.launch {
@@ -149,13 +149,13 @@ class UserDeckActivity : AppCompatActivity() {
                     )
 
                     if (exito) {
-                        Toast.makeText(this@UserDeckActivity, "¡Equipo subido a la comunidad!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@UserDeckActivity, R.string.deck_msg_publish_success, Toast.LENGTH_SHORT).show()
                     } else {
-                        Toast.makeText(this@UserDeckActivity, "Error al publicar", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@UserDeckActivity, R.string.deck_msg_publish_fail, Toast.LENGTH_SHORT).show()
                     }
                 }
             }
-            .setNegativeButton("Cancelar", null)
+            .setNegativeButton(R.string.action_cancel, null)
             .show()
     }
 
@@ -171,35 +171,29 @@ class UserDeckActivity : AppCompatActivity() {
                 val nombreGuardado = document.getString("userName")
                 val nintendoIdGuardado = document.getString("nintendoId")
 
-
                 cargarAvatarEnPantalla(avatarGuardado)
-
 
                 if (!nombreGuardado.isNullOrEmpty()) {
                     binding.tvUserName.text = nombreGuardado
                 } else {
-                    binding.tvUserName.text = currentUser.email?.substringBefore("@") ?: "Usuario"
+                    binding.tvUserName.text = currentUser.email?.substringBefore("@") ?: R.string.deck_username_default.toString()
                 }
-
 
                 if (!nintendoIdGuardado.isNullOrEmpty()) {
-                    binding.tvNintendoId.text = "NintendoID: $nintendoIdGuardado"
+                    binding.tvNintendoId.text = getString(R.string.deck_nintendoid_format, nintendoIdGuardado)
                 } else {
-                    binding.tvNintendoId.text = "NintendoID: ${currentUser.uid.take(10)}"
+                    binding.tvNintendoId.text = getString(R.string.deck_nintendoid_format, currentUser.uid.take(10))
                 }
             } else {
-
                 cargarAvatarEnPantalla("avatar_entrenador")
-                binding.tvUserName.text = currentUser.email?.substringBefore("@") ?: "Usuario"
-                binding.tvNintendoId.text = "NintendoID: ${currentUser.uid.take(10)}"
+                binding.tvUserName.text = currentUser.email?.substringBefore("@") ?: R.string.deck_username_default.toString()
+                binding.tvNintendoId.text = getString(R.string.deck_nintendoid_format, currentUser.uid.take(10))
             }
         }.addOnFailureListener {
-
             cargarAvatarEnPantalla("avatar_entrenador")
-            binding.tvUserName.text = currentUser.email?.substringBefore("@") ?: "Usuario"
+            binding.tvUserName.text = currentUser.email?.substringBefore("@") ?: R.string.deck_username_default.toString()
         }
     }
-
 
     private fun cargarAvatarEnPantalla(nombreAvatar: String) {
 

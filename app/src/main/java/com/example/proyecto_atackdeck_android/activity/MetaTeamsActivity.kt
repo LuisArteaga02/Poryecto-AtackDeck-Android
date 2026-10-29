@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.proyecto_atackdeck_android.R
 import com.example.proyecto_atackdeck_android.adapter.TeamAdapter
 import com.example.proyecto_atackdeck_android.databinding.ActivityMetaTeamsBinding
 import com.example.proyecto_atackdeck_android.repository.PokemonRepository
@@ -34,13 +35,9 @@ class MetaTeamsActivity : AppCompatActivity() {
         }
 
         binding.rvMetaTeams.layoutManager = LinearLayoutManager(this)
-
         binding.swipeRefresh.setOnRefreshListener {
             loadMetaTeams()
         }
-
-
-
         loadMetaTeams()
     }
 
@@ -66,13 +63,13 @@ class MetaTeamsActivity : AppCompatActivity() {
                             if (exito) {
                                 Toast.makeText(
                                     this@MetaTeamsActivity,
-                                    "¡Equipo guardado en tu perfil!",
+                                    R.string.team_msg_saved,
                                     Toast.LENGTH_SHORT
                                 ).show()
                             } else {
                                 Toast.makeText(
                                     this@MetaTeamsActivity,
-                                    "Error al guardar el equipo",
+                                    R.string.team_msg_fail,
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }

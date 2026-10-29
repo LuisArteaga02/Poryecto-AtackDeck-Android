@@ -43,7 +43,7 @@
                 android:layout_width="361dp"
                 android:layout_height="36dp"
                 android:layout_marginTop="8dp"
-                android:text="Welcome, "
+                android:text="@string/main_title_welcome"
                 android:textColor="@color/white"
                 android:textSize="28sp"
                 android:textStyle="bold"
@@ -74,7 +74,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pokemon Ranking (Meta)"
+                        android:text="@string/main_title_meta"
                         android:textColor="@color/white"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -99,7 +99,7 @@
                         android:backgroundTint="#262530"
                         android:gravity="center"
                         android:paddingVertical="8dp"
-                        android:text="View More..."
+                        android:text="@string/login_button_morepokemon"
                         android:textColor="@color/white"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -125,7 +125,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Meta Teams(Pokemon Champions)"
+                        android:text="@string/login_title_teams"
                         android:textColor="@color/white"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -163,7 +163,7 @@
                         android:background="@drawable/bg_rounded_button"
                         android:gravity="center"
                         android:paddingVertical="8dp"
-                        android:text="See More Meta Teams..."
+                        android:text="@string/login_button_moreteams"
                         android:textColor="@color/white"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -178,7 +178,7 @@
                         android:backgroundTint="#3B82F6"
                         android:gravity="center"
                         android:paddingVertical="12dp"
-                        android:text="Ver Equipos de la Comunidad"
+                        android:text="@string/login_button_communityteams"
                         android:textColor="@color/white"
                         android:textSize="16sp"
                         android:textStyle="bold" />

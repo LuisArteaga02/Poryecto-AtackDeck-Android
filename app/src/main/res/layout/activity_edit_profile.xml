@@ -71,6 +71,7 @@
                             android:id="@+id/imgSelectedAvatar"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:contentDescription="@string/editprofile_description_avatar"
                             android:padding="10dp"
                             android:scaleType="centerCrop"
                             tools:src="@mipmap/ic_launcher" />
@@ -80,7 +81,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="Change Avatar"
+                        android:text="@string/editprofile_title_avatar"
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -104,7 +105,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="UserName"
+                        android:text="@string/editprofile_label_username"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -126,7 +127,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:text="NintendoID"
+                        android:text="@string/editprofile_label_nintendo"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -154,7 +155,7 @@
                         android:backgroundTint="#9C1D52"
                         android:gravity="center"
                         android:paddingVertical="14dp"
-                        android:text="Save Changes"
+                        android:text="@string/action_save"
                         android:textColor="@color/white"
                         android:textSize="18sp"
                         android:textStyle="bold" />

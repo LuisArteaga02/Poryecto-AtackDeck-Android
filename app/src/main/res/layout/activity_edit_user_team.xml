@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Editar Equipo"
+        android:text="@string/editteam_title"
         android:layout_marginTop="20dp"
         android:textColor="@color/white"
         android:textSize="24sp"
@@ -49,7 +49,7 @@
         android:layout_height="50dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/bg_rounded_item"
-        android:hint="Nombre del equipo"
+        android:hint="@string/editteam_hint_name"
         android:paddingHorizontal="16dp"
         android:textColor="@color/white"
         android:textColorHint="#9CA3AF" />
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Toca un Pokémon para eliminarlo del equipo:"
+        android:text="@string/editteam_label_help"
         android:textColor="#9CA3AF"
         android:textSize="14sp" />
 
@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:backgroundTint="#881337"
-        android:text="Guardar Cambios"
+        android:text="@string/action_save"
         android:textColor="@color/white" />
 
 

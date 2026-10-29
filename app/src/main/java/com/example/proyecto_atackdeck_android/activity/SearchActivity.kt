@@ -83,7 +83,7 @@ class SearchActivity : AppCompatActivity() {
             intent.putExtra("EXTRA_POKEMON_NAME", query)
             startActivity(intent)
         } else {
-            Toast.makeText(this, "Ingresa un nombre de Pokémon", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.search_msg_invalid, Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -3,7 +3,6 @@ package com.example.proyecto_atackdeck_android.activity
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
@@ -16,8 +15,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.proyecto_atackdeck_android.R
 import com.example.proyecto_atackdeck_android.adapter.MoveSlotAdapter
 import com.example.proyecto_atackdeck_android.api.RetrofitInstance
 import com.example.proyecto_atackdeck_android.databinding.ActivityPokemonDetailBinding
@@ -64,7 +63,7 @@ class PokemonDetailActivity : AppCompatActivity() {
         } else if (pokemonId != -1) {
             descargarDatosPokemon(nombre = null, id = pokemonId)
         } else {
-            Toast.makeText(this, "Error: Pokémon no recibido", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.error_load, Toast.LENGTH_SHORT).show()
             finish()
         }
     }
@@ -95,14 +94,25 @@ class PokemonDetailActivity : AppCompatActivity() {
                     binding.btnAddToTeam.isEnabled = true
 
                     // 3. LLENAMOS LA PANTALLA
-                    binding.tvId.text = "#${pokemon.id.toString().padStart(3, '0')}"
+                    binding.tvId.text = getString(
+                        R.string.pokemon_label_number,
+                        pokemon.id.toString().padStart(4, '0')
+                    )
                     binding.tvName.text = pokemon.name.toPokeFormat()
 
                     val heightM = pokemon.height / 10.0
-                    binding.tvHeight.text = "${"%.1f".format(heightM)} m"
+                    binding.tvHeight.text = getString(R.string.pokemon_height_format, heightM)
 
                     val weightKg = pokemon.weight / 10.0
-                    binding.tvWeight.text = "${"%.1f".format(weightKg)} kg"
+                    binding.tvWeight.text = getString(R.string.pokemon_weight_format, weightKg)
+
+                    // Imagen
+                    val spriteUrl = pokemonActualParaGuardar!!.spriteUrl
+                    if (spriteUrl.isNotEmpty()) {
+                        Glide.with(this@PokemonDetailActivity)
+                            .load(spriteUrl)
+                            .into(binding.imgSprite)
+                    }
 
                     // Tipos
                     val tipos = pokemon.types
@@ -131,7 +141,11 @@ class PokemonDetailActivity : AppCompatActivity() {
                     listOf(binding.tvAbility1, binding.tvAbility2, binding.tvAbility3).forEachIndexed { i, tv ->
                         val hab = habilidades.getOrNull(i)
                         tv.visibility = if (hab != null) View.VISIBLE else View.GONE
-                        hab?.let { tv.text = "${it.ability.name.toPokeFormat()}${if (it.isHidden) " (hidden)" else ""}" }
+                        hab?.let {
+                            tv.text =
+                                if (it.isHidden) getString(R.string.pokemon_ability_hidden, it.ability.name.toPokeFormat())
+                                else it.ability.name.toPokeFormat()
+                        }
                     }
 
                     // Stats base
@@ -167,14 +181,6 @@ class PokemonDetailActivity : AppCompatActivity() {
                         }
                     }
 
-                    // Imagen
-                    val spriteUrl = pokemonActualParaGuardar!!.spriteUrl
-                    if (spriteUrl.isNotEmpty()) {
-                        Glide.with(this@PokemonDetailActivity)
-                            .load(spriteUrl)
-                            .into(binding.imgSprite)
-                    }
-
                     // Movimientos
                     moveAdapter = MoveSlotAdapter { id ->
                         val intent = Intent(this@PokemonDetailActivity, MoveDetailsActivity::class.java)
@@ -188,13 +194,13 @@ class PokemonDetailActivity : AppCompatActivity() {
                     if (response.code() == 404 && nombre != null) {
                         Toast.makeText(
                             this@PokemonDetailActivity,
-                            "Pokémon '$nombre' no encontrado",
+                            R.string.pokemon_msg_notfound,
                             Toast.LENGTH_LONG
                         ).show()
                     } else {
                         Toast.makeText(
                             this@PokemonDetailActivity,
-                            "Error: ${response.code()}",
+                            getString(R.string.error_exception, response.code().toString()),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -204,7 +210,7 @@ class PokemonDetailActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 Toast.makeText(
                     this@PokemonDetailActivity,
-                    "Error de red: ${e.message}",
+                    getString(R.string.error_exception, e.message),
                     Toast.LENGTH_SHORT
                 ).show()
                 finish()
@@ -217,7 +223,7 @@ class PokemonDetailActivity : AppCompatActivity() {
     private fun mostrarDialogoEquipos() {
         val pokemonToSave = pokemonActualParaGuardar
         if (pokemonToSave == null) {
-            Toast.makeText(this, "Espera a que el Pokémon termine de cargar", Toast.LENGTH_SHORT)
+            Toast.makeText(this, R.string.pokemon_msg_wait, Toast.LENGTH_SHORT)
                 .show()
             return
         }
@@ -227,10 +233,10 @@ class PokemonDetailActivity : AppCompatActivity() {
             val userTeams = repository.getUserTeams()
 
             val menuOptions = userTeams.map { it.teamName }.toMutableList()
-            menuOptions.add("+ Crear Nuevo Equipo")
+            menuOptions.add(R.string.team_button_create.toString())
 
             AlertDialog.Builder(this@PokemonDetailActivity)
-                .setTitle("Agregar a Equipo")
+                .setTitle(R.string.team_button_add)
                 .setItems(menuOptions.toTypedArray()) { _, indexSeleccionado ->
                     if (indexSeleccionado == menuOptions.size - 1) {
                         mostrarDialogoCrearEquipo(pokemonToSave, repository)
@@ -249,12 +255,12 @@ class PokemonDetailActivity : AppCompatActivity() {
 
     private fun mostrarDialogoCrearEquipo(pokemon: TeamPokemon, repository: PokemonRepository) {
         val input = EditText(this)
-        input.hint = "Escribe el nombre del equipo"
+        input.hint = R.string.team_hint_name.toString()
 
         AlertDialog.Builder(this)
-            .setTitle("Nuevo Equipo")
+            .setTitle(R.string.team_alert_new_title)
             .setView(input)
-            .setPositiveButton("Guardar") { _, _ ->
+            .setPositiveButton(R.string.action_save) { _, _ ->
                 val teamName = input.text.toString().trim()
                 if (teamName.isNotEmpty()) {
                     lifecycleScope.launch {
@@ -262,14 +268,14 @@ class PokemonDetailActivity : AppCompatActivity() {
                         if (exito) {
                             Toast.makeText(
                                 this@PokemonDetailActivity,
-                                "Guardado en $teamName",
+                                getString(R.string.pokemon_msg_saved, teamName),
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
                     }
                 }
             }
-            .setNegativeButton("Cancelar", null)
+            .setNegativeButton(R.string.action_cancel, null)
             .show()
     }
 
@@ -282,7 +288,7 @@ class PokemonDetailActivity : AppCompatActivity() {
         if (team.pokemons.size >= 6) {
             Toast.makeText(
                 this,
-                "El equipo '${team.teamName}' ya está lleno (Máximo 6)",
+                getString(R.string.team_msg_full, team.teamName),
                 Toast.LENGTH_LONG
             ).show()
             return
@@ -296,13 +302,13 @@ class PokemonDetailActivity : AppCompatActivity() {
             if (exito) {
                 Toast.makeText(
                     this@PokemonDetailActivity,
-                    "Agregado a ${team.teamName}",
+                    getString(R.string.team_msg_full, team.teamName),
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
                 Toast.makeText(
                     this@PokemonDetailActivity,
-                    "Error al actualizar el equipo",
+                    R.string.team_msg_fail,
                     Toast.LENGTH_SHORT
                 ).show()
             }

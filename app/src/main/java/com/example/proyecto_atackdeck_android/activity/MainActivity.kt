@@ -24,10 +24,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val repository = PokemonRepository() // Conexión a Firebase
     private lateinit var rankingAdapter: RankingAdapter
-
     private lateinit var auth: FirebaseAuth
     private val db = FirebaseFirestore.getInstance()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,8 +44,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val nombreUsuario = currentUser.email?.substringBefore("@") ?: "Usuario"
-        binding.tvWelcome.text = "Welcome "+ nombreUsuario
-
+        binding.tvWelcome.text = getString(R.string.main_title_welcome, nombreUsuario)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -55,18 +52,12 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-
-
-
-
         // 1. Configuramos el LayoutManager del RecyclerView para que sea una lista vertical
         binding.rvMetaPokemons.layoutManager = LinearLayoutManager(this)
 
         // 2. Cargamos los datos desde Firebase
         loadRankingFromFirebase()
         loadMetaTeams()
-
-
 
         binding.btnViewMoreRanking.setOnClickListener {
             val intent = Intent(this@MainActivity, MetaPokemonActivity::class.java)
@@ -84,11 +75,8 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, HelpActivity::class.java)
             startActivity(intent)
         }
-
-
-
-
     }
+
     override fun onResume() {
         super.onResume()
         cargarDatosDelPerfil()
@@ -119,13 +107,13 @@ class MainActivity : AppCompatActivity() {
                         if (exito) {
                             Toast.makeText(
                                 this@MainActivity,
-                                "¡Equipo guardado en tu perfil!",
+                                R.string.team_msg_saved,
                                 Toast.LENGTH_SHORT
                             ).show()
                         } else {
                             Toast.makeText(
                                 this@MainActivity,
-                                "Error al guardar el equipo",
+                                R.string.team_msg_fail,
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
@@ -142,7 +130,7 @@ class MainActivity : AppCompatActivity() {
     private fun cargarDatosDelPerfil() {
         val currentUser = auth.currentUser ?: return
         val defaultName = currentUser.email?.substringBefore("@") ?: "Usuario"
-        binding.tvWelcome.text = "Welcome $defaultName"
+        binding.tvWelcome.text = getString(R.string.main_title_welcome, defaultName)
         val userRef = db.collection("users_profiles").document(currentUser.uid)
 
         userRef.get().addOnSuccessListener { document ->
@@ -152,15 +140,15 @@ class MainActivity : AppCompatActivity() {
 
 
                 if (!nombreGuardado.isNullOrEmpty()) {
-                    binding.tvWelcome.text = "Welcome $nombreGuardado"
+                    getString(R.string.main_title_welcome, nombreGuardado)
                 } else {
-                    binding.tvWelcome.text = currentUser.email?.substringBefore("@") ?: "Welcome $currentUser"
+                    binding.tvWelcome.text = getString(R.string.main_title_welcome, currentUser.email?.substringBefore("@") ?: currentUser)
                 }
 
 
             }
         }.addOnFailureListener {
-            binding.tvWelcome.text = currentUser.email?.substringBefore("@") ?: "Welcome $currentUser"
+            binding.tvWelcome.text = getString(R.string.main_title_welcome, currentUser.email?.substringBefore("@") ?: currentUser)
         }
     }
 

@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.proyecto_atackdeck_android.R
 import com.example.proyecto_atackdeck_android.adapter.GenerationAdapter
 import com.example.proyecto_atackdeck_android.api.RetrofitInstance
 import com.example.proyecto_atackdeck_android.databinding.ActivityGenerationListBinding
@@ -34,7 +35,7 @@ class GenerationListActivity : AppCompatActivity() {
 
         // Obtener la generación seleccionada desde el Intent
         val generationId = intent.getIntExtra("EXTRA_GENERATION_ID", 1)
-        binding.tvGenerationTitle.text = "Generación $generationId"
+        binding.tvGenerationTitle.text = getString(R.string.genlist_title_generation, generationId)
 
         // Botón Volver
         binding.btnVolver.setOnClickListener { finish() }
@@ -72,10 +73,10 @@ class GenerationListActivity : AppCompatActivity() {
 
                     binding.rvGenerationPokemons.adapter = adapter
                 } else {
-                    Toast.makeText(this@GenerationListActivity, "Error al cargar generación", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@GenerationListActivity, R.string.error_load, Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
-                Toast.makeText(this@GenerationListActivity, "Error de red: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@GenerationListActivity, getString(R.string.error_exception, e.message), Toast.LENGTH_SHORT).show()
             } finally {
                 binding.progressBar.visibility = View.GONE
             }

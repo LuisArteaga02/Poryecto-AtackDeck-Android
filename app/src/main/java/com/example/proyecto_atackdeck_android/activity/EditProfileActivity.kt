@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.proyecto_atackdeck_android.R
 import com.example.proyecto_atackdeck_android.adapter.AvatarAdapter
 import com.example.proyecto_atackdeck_android.databinding.ActivityEditProfileBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -96,7 +97,7 @@ class EditProfileActivity : AppCompatActivity() {
         val newNintendoId = binding.etNintendoId.text.toString().trim()
 
         if (newUserName.isEmpty()) {
-            Toast.makeText(this, "El nombre de usuario no puede estar vacío", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.msg_username_empty, Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -110,11 +111,11 @@ class EditProfileActivity : AppCompatActivity() {
         db.collection("users_profiles").document(uid)
             .set(datosAGuardar)
             .addOnSuccessListener {
-                Toast.makeText(this, "Perfil actualizado correctamente", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.msg_profile_update_success, Toast.LENGTH_SHORT).show()
                 finish() // Cierra esta pantalla y regresa a UserDeckActivity
             }
             .addOnFailureListener {
-                Toast.makeText(this, "Error al guardar: ${it.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.error_save, it.message), Toast.LENGTH_SHORT).show()
             }
     }
 }

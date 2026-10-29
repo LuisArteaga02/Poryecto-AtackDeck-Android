@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.proyecto_atackdeck_android.R
 import com.example.proyecto_atackdeck_android.adapter.CommunityTeamAdapter
 import com.example.proyecto_atackdeck_android.databinding.ActivityCommunityTeamsBinding
 import com.example.proyecto_atackdeck_android.repository.PokemonRepository
@@ -80,8 +81,8 @@ class CommunityTeamsActivity : AppCompatActivity() {
                     }
                 )
                 binding.rvCommunityTeams.adapter = adapter
-            } catch (e: Exception) {
-                Toast.makeText(this@CommunityTeamsActivity, "Error al cargar la comunidad", Toast.LENGTH_SHORT).show()
+            } catch (_: Exception) {
+                Toast.makeText(this@CommunityTeamsActivity, R.string.error_load, Toast.LENGTH_SHORT).show()
             } finally {
                 binding.swipeRefresh.isRefreshing = false
             }
@@ -99,7 +100,7 @@ class CommunityTeamsActivity : AppCompatActivity() {
                 val updatedList = repository.getCommunityTeams()
                 adapter.updateData(updatedList)
             } else {
-                Toast.makeText(this@CommunityTeamsActivity, "Error al registrar el voto", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@CommunityTeamsActivity, R.string.error_vote, Toast.LENGTH_SHORT).show()
             }
         }
     }

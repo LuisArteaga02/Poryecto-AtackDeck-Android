@@ -28,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
                 val account = task.getResult(ApiException::class.java)!!
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
-                Toast.makeText(this, "Error de Google: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.error_google, e.message), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -69,11 +69,11 @@ class LoginActivity : AppCompatActivity() {
                         if (task.isSuccessful) {
                             irAlPerfil()
                         } else {
-                            Toast.makeText(this, "Error: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, getString(R.string.error_exception, task.exception?.message), Toast.LENGTH_LONG).show()
                         }
                     }
             } else {
-                Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.msg_fields_empty, Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -86,14 +86,14 @@ class LoginActivity : AppCompatActivity() {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(this, "Cuenta creada exitosamente", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, R.string.msg_profile_update_success, Toast.LENGTH_SHORT).show()
                             irAlPerfil()
                         } else {
-                            Toast.makeText(this, "Error: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, getString(R.string.error_exception, task.exception?.message), Toast.LENGTH_LONG).show()
                         }
                     }
             } else {
-                Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.msg_fields_empty, Toast.LENGTH_SHORT).show()
             }
         }
         binding.btnGoogleLogin.setOnClickListener {
@@ -109,7 +109,7 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     irAlPerfil()
                 } else {
-                    Toast.makeText(this, "Fallo al autenticar en Firebase", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, R.string.error_firebase_auth, Toast.LENGTH_SHORT).show()
                 }
             }
     }

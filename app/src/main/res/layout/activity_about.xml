@@ -51,7 +51,7 @@
                         android:layout_height="80dp"
                         android:layout_marginTop="8dp"
                         android:src="@drawable/pokeapi"
-                        android:contentDescription="PokéAPI Logo"
+                        android:contentDescription="@string/about_description_api"
                         android:scaleType="fitCenter" />
 
                     <!-- Descripción PokéAPI -->
@@ -60,7 +60,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:gravity="center"
-                        android:text="Usando el proyecto OpenSource de PokéApi para obtener los datos de los diferentes Pokémon"
+                        android:text="@string/about_label_api"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
 
@@ -71,7 +71,7 @@
                         android:layout_height="60dp"
                         android:layout_marginTop="20dp"
                         android:src="@drawable/kotlin"
-                        android:contentDescription="Kotlin Logo"
+                        android:contentDescription="@string/about_description_kotlin"
                         android:scaleType="fitCenter" />
 
                     <!-- Descripción de Tecnología -->
@@ -80,7 +80,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:gravity="center"
-                        android:text="Desarrollada en Android Studio, hecha con Kotlin nativo y XML para las vistas."
+                        android:text="@string/about_label_making"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
 
@@ -89,7 +89,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="28dp"
-                        android:text="Desarrolladores"
+                        android:text="@string/about_title_devs"
                         android:textColor="@color/white"
                         android:textSize="22sp"
                         android:textStyle="bold" />
@@ -114,13 +114,13 @@
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 android:src="@drawable/roggen1"
-                                android:contentDescription="Avatar Luis Cartagena" />
+                                android:contentDescription="@string/about_description_dev1" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
-                                android:text="Luis Cartagena - LuisArteaga02"
+                                android:text="@string/about_label_dev1"
                                 android:textColor="@color/white"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
@@ -139,13 +139,13 @@
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 android:src="@drawable/dani"
-                                android:contentDescription="Avatar Daniel Lino" />
+                                android:contentDescription="@string/about_description_dev2" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
-                                android:text="Daniel Lino - DFquack"
+                                android:text="@string/about_label_dev2"
                                 android:textColor="@color/white"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
@@ -164,13 +164,13 @@
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 android:src="@drawable/luis"
-                                android:contentDescription="Avatar Luis Ortiz" />
+                                android:contentDescription="@string/about_description_dev3" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
-                                android:text="Luis Ortiz - luhotz"
+                                android:text="@string/about_label_dev3"
                                 android:textColor="@color/white"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />

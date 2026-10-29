@@ -70,7 +70,7 @@ class MoveDetailsActivity : AppCompatActivity() {
 
                 }
                 else {
-                    makeSnackbar(R.string.error_pokemon)
+                    makeSnackbar(R.string.error_load)
                 }
             } catch (e: Exception) {
                 makeSnackbar(getString(R.string.error_exception, e))

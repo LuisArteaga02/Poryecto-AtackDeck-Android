@@ -35,7 +35,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
-                android:hint="Search Pokémon..."
+                android:hint="@string/search_hint"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
                 android:textColor="@color/white"
@@ -46,7 +46,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:contentDescription="Search Icon"
+                android:contentDescription="@string/search_description_icon"
                 android:src="@android:drawable/ic_menu_search"
                 app:tint="@color/white" />
         </LinearLayout>
@@ -60,7 +60,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:text="Explorar por categoría"
+        android:text="@string/search_title_category"
         android:textColor="@color/white"
         android:textSize="22sp"
         android:textStyle="bold"
@@ -105,7 +105,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Primera\nGeneracion"
+                        android:text="@string/search_button_gen1"
                         android:textColor="#1F2937"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -115,7 +115,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:text="1"
+                        android:text="@string/search_button_num1"
                         android:textColor="#1F2937"
                         android:textSize="48sp"
                         android:textStyle="bold" />
@@ -141,7 +141,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Segunda\nGeneracion"
+                        android:text="@string/search_button_gen2"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -151,7 +151,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:text="2"
+                        android:text="@string/search_button_num2"
                         android:textColor="#1F2937"
                         android:textSize="48sp"
                         android:textStyle="bold" />
@@ -177,7 +177,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Tercera\nGeneracion"
+                        android:text="@string/search_button_gen3"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -187,7 +187,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:text="3"
+                        android:text="@string/search_button_num3"
                         android:textColor="#FBBF24"
                         android:textSize="48sp"
                         android:textStyle="bold" />
@@ -213,7 +213,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cuarta\nGeneracion"
+                        android:text="@string/search_button_gen4"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -223,7 +223,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:text="4"
+                        android:text="@string/search_button_num4"
                         android:textColor="#FBBF24"
                         android:textSize="48sp"
                         android:textStyle="bold" />
@@ -249,7 +249,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Quinta\nGeneracion"
+                        android:text="@string/search_button_gen5"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -259,7 +259,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:text="5"
+                        android:text="@string/search_button_num5"
                         android:textColor="#FBBF24"
                         android:textSize="48sp"
                         android:textStyle="bold" />
@@ -285,7 +285,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sexta\nGeneracion"
+                        android:text="@string/search_button_gen6"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -295,7 +295,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:text="6"
+                        android:text="@string/search_button_num6"
                         android:textColor="#FBBF24"
                         android:textSize="48sp"
                         android:textStyle="bold" />
@@ -321,7 +321,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Septima\nGeneracion"
+                        android:text="@string/search_button_gen7"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -331,7 +331,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:text="7"
+                        android:text="@string/search_button_num7"
                         android:textColor="#FBBF24"
                         android:textSize="48sp"
                         android:textStyle="bold" />
@@ -357,7 +357,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Octava\nGeneracion"
+                        android:text="@string/search_button_gen8"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -367,7 +367,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:text="8"
+                        android:text="@string/search_button_num8"
                         android:textColor="#FBBF24"
                         android:textSize="48sp"
                         android:textStyle="bold" />
@@ -393,7 +393,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Novena\nGeneracion"
+                        android:text="@string/search_button_gen9"
                         android:textColor="#93C5FD"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -403,7 +403,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:text="9"
+                        android:text="@string/search_button_num9"
                         android:textColor="#FBBF24"
                         android:textSize="48sp"
                         android:textStyle="bold" />

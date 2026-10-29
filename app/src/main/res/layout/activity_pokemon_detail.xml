@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_gravity="center_horizontal"
-                android:text="#0000 - Seed Pokémon"
+                android:text="@string/pokemon_label_number"
                 android:textColor="#cccccc"
                 android:textSize="14sp" />
 
@@ -73,7 +73,7 @@
                     android:paddingVertical="6dp"
                     android:background="#000000"
                     android:backgroundTint="#7AC74C"
-                    android:text="grass"
+                    android:text="@string/value_placeholder"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
                     android:textSize="13sp"
@@ -88,7 +88,7 @@
                     android:paddingVertical="6dp"
                     android:background="#000000"
                     android:backgroundTint="#A33EA1"
-                    android:text="poison"
+                    android:text="@string/value_placeholder"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
                     android:textSize="13sp"
@@ -122,7 +122,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Altura"
+                        android:text="@string/pokemon_label_height"
                         android:textColor="#9CA3AF"
                         android:textSize="12sp" />
                     <TextView
@@ -130,7 +130,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="0.0 m"
+                        android:text="@string/pokemon_height_format"
                         android:textColor="#FFFFFF"
                         android:textSize="22sp"
                         android:textStyle="bold" />
@@ -151,7 +151,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Peso"
+                        android:text="@string/pokemon_label_weight"
                         android:textColor="#9CA3AF"
                         android:textSize="12sp" />
                     <TextView
@@ -159,7 +159,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="0.0 kg"
+                        android:text="@string/pokemon_weight_format"
                         android:textColor="#FFFFFF"
                         android:textSize="22sp"
                         android:textStyle="bold" />
@@ -206,7 +206,7 @@
                     android:id="@+id/tvAbility1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TextView"
+                    android:text="@string/value_placeholder"
                     android:textColor="#ffffff"
                     android:layout_gravity="center" />
 
@@ -214,7 +214,7 @@
                     android:id="@+id/tvAbility2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TextView"
+                    android:text="@string/value_placeholder"
                     android:textColor="#ffffff"
                     android:layout_gravity="center" />
 
@@ -222,7 +222,7 @@
                     android:id="@+id/tvAbility3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TextView"
+                    android:text="@string/value_placeholder"
                     android:textColor="#ffffff"
                     android:layout_gravity="center" />
             </LinearLayout>

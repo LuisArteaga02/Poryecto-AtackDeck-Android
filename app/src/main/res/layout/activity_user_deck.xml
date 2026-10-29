@@ -44,10 +44,10 @@
                     <Button
                         android:id="@+id/btnlogout"
                         android:layout_width="105dp"
-                        android:layout_height="44dp"
-                        android:layout_marginLeft="100dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="100dp"
                         android:backgroundTint="#881337"
-                        android:text="Log Out" />
+                        android:text="@string/deck_button_logout" />
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="140dp"
@@ -61,7 +61,7 @@
                             android:id="@+id/imgUserProfile"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:contentDescription="Avatar Usuario"
+                            android:contentDescription="@string/deck_description_avatar"
                             android:scaleType="centerCrop" />
                     </androidx.cardview.widget.CardView>
 
@@ -71,7 +71,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="-"
+                        android:text="@string/value_placeholder"
                         android:textColor="@color/white"
                         android:textSize="22sp"
                         android:textStyle="bold" />
@@ -82,7 +82,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:text="NintendoID: -"
+                        android:text="@string/deck_nintendoid_format"
                         android:textColor="#E0E0E0"
                         android:textSize="14sp" />
 
@@ -96,7 +96,7 @@
                         android:backgroundTint="#881337"
                         android:gravity="center"
                         android:paddingVertical="12dp"
-                        android:text="Editar Perfil"
+                        android:text="@string/deck_button_edit"
                         android:textColor="@color/white"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -120,7 +120,7 @@
                                 android:id="@+id/tvTeamName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Teams"
+                                android:text="@string/deck_title_teams"
                                 android:textColor="@color/white"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
