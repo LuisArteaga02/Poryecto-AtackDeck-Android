@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="16dp"
-    app:cardBackgroundColor="#1A1921"
+    app:cardBackgroundColor="@color/secondary"
     app:cardCornerRadius="16dp"
     app:cardElevation="0dp">
 
@@ -35,7 +35,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="Rain Dance Meta"
-                    android:textColor="@color/white"
+                    android:textColor="@color/on_secondary"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -45,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     tools:text="Subido por yugoaderm"
-                    android:textColor="#9CA3AF"
+                    android:textColor="@color/tertiary"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -65,7 +65,7 @@
                     android:contentDescription="@string/team_description_upvote"
                     android:padding="4dp"
                     android:src="@android:drawable/arrow_up_float"
-                    app:tint="#9CA3AF" />
+                    app:tint="@color/on_secondary" />
 
                 <!-- Puntuación (Score) -->
                 <TextView
@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="4dp"
                     tools:text="125"
-                    android:textColor="@color/white"
+                    android:textColor="@color/on_secondary"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -86,7 +86,7 @@
                     android:contentDescription="@string/team_description_downvote"
                     android:padding="4dp"
                     android:src="@android:drawable/arrow_down_float"
-                    app:tint="#9CA3AF" />
+                    app:tint="@color/on_secondary" />
             </LinearLayout>
         </LinearLayout>
 
@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             tools:text="Un equipo basado en clima lluvioso para potenciar a los tipo agua y evitar debilidades de fuego. Usa a Pelipper de líder."
-            android:textColor="#D1D5DB"
+            android:textColor="@color/on_secondary"
             android:textSize="13sp"
             android:maxLines="3"
             android:ellipsize="end" />

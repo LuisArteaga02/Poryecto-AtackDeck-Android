@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121212"
+    android:background="@color/background"
     tools:context=".activity.HelpActivity">
 
     <!-- ScrollView para que no se corte en pantallas pequeñas -->
@@ -27,21 +27,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="80dp"
                 android:layout_marginBottom="8dp"
-                app:cardBackgroundColor="#2A0813"
+                app:cardBackgroundColor="@color/secondary"
                 app:cardCornerRadius="24dp"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-
-
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
-
                     android:padding="20dp">
 
                     <!-- Logo PokéAPI -->
@@ -61,7 +57,7 @@
                         android:layout_marginTop="16dp"
                         android:gravity="center"
                         android:text="@string/about_label_api"
-                        android:textColor="@color/white"
+                        android:textColor="@color/on_secondary"
                         android:textSize="14sp" />
 
                     <!-- Logo Kotlin -->
@@ -81,7 +77,7 @@
                         android:layout_marginTop="16dp"
                         android:gravity="center"
                         android:text="@string/about_label_making"
-                        android:textColor="@color/white"
+                        android:textColor="@color/on_secondary"
                         android:textSize="14sp" />
 
                     <!-- Título Desarrolladores -->
@@ -90,7 +86,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="28dp"
                         android:text="@string/about_title_devs"
-                        android:textColor="@color/white"
+                        android:textColor="@color/on_secondary"
                         android:textSize="22sp"
                         android:textStyle="bold" />
 
@@ -121,7 +117,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
                                 android:text="@string/about_label_dev1"
-                                android:textColor="@color/white"
+                                android:textColor="@color/on_secondary"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -146,7 +142,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
                                 android:text="@string/about_label_dev2"
-                                android:textColor="@color/white"
+                                android:textColor="@color/on_secondary"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -171,7 +167,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
                                 android:text="@string/about_label_dev3"
-                                android:textColor="@color/white"
+                                android:textColor="@color/on_secondary"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -186,16 +182,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_rounded_button"
-                android:backgroundTint="#1A1921"
+                android:backgroundTint="@color/primary"
                 android:drawablePadding="8dp"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="12dp"
                 android:text="@string/action_back"
-                android:textColor="@color/white"
+                android:textColor="@color/on_primary"
                 android:textSize="16sp"
-
                 android:textStyle="bold"
                 app:drawableStartCompat="@drawable/back_btn"
                 app:drawableTint="@color/white"

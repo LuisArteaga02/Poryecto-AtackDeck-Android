@@ -2,8 +2,7 @@
     android:width="24dp"
     android:height="24dp"
     android:viewportWidth="16.067656"
-    android:viewportHeight="15.285264"
-    android:tint="@color/white"> <!-- Puedes quitar esta línea si lo quieres en negro -->
+    android:viewportHeight="15.285264"> <!-- Puedes quitar esta línea si lo quieres en negro -->
 
     <!-- Grupo principal que centra el dibujo en el viewport original -->
     <group

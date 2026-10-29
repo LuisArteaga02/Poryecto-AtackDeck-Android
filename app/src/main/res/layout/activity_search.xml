@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121212"
+    android:background="@color/background"
     tools:context=".activity.SearchActivity">
 
     <!-- Barra de Búsqueda Superior -->
@@ -15,7 +15,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="16dp"
-        app:cardBackgroundColor="#262530"
+        app:cardBackgroundColor="@color/secondary_variant"
         app:cardCornerRadius="24dp"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,8 +38,8 @@
                 android:hint="@string/search_hint"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
-                android:textColor="@color/white"
-                android:textColorHint="#9CA3AF"
+                android:textColor="@color/on_secondary"
+                android:textColorHint="@color/tertiary"
                 android:textSize="14sp"
                 android:completionThreshold="1" />
 
@@ -48,7 +48,7 @@
                 android:layout_height="24dp"
                 android:contentDescription="@string/search_description_icon"
                 android:src="@android:drawable/ic_menu_search"
-                app:tint="@color/white" />
+                app:tint="@color/on_secondary" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -61,7 +61,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:text="@string/search_title_category"
-        android:textColor="@color/white"
+        android:textColor="@color/on_background"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

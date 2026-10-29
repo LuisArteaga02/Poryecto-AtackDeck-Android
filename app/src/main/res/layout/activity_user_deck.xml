@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121212"
+    android:background="@color/background"
     tools:context=".activity.UserDeckActivity">
 
     <!-- ScrollView para evitar cortes en pantallas pequeñas -->
@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                app:cardBackgroundColor="#2A0813"
+                app:cardBackgroundColor="@color/secondary"
                 app:cardCornerRadius="24dp"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -46,14 +46,14 @@
                         android:layout_width="105dp"
                         android:layout_height="48dp"
                         android:layout_marginStart="100dp"
-                        android:backgroundTint="#881337"
+                        android:backgroundTint="@color/primary"
                         android:text="@string/deck_button_logout" />
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="140dp"
                         android:layout_height="140dp"
                         android:layout_marginTop="8dp"
-                        app:cardBackgroundColor="#121212"
+                        app:cardBackgroundColor="@color/background"
                         app:cardCornerRadius="20dp"
                         app:cardElevation="0dp">
 
@@ -72,7 +72,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:text="@string/value_placeholder"
-                        android:textColor="@color/white"
+                        android:textColor="@color/on_secondary"
                         android:textSize="22sp"
                         android:textStyle="bold" />
 
@@ -83,7 +83,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
                         android:text="@string/deck_nintendoid_format"
-                        android:textColor="#E0E0E0"
+                        android:textColor="@color/tertiary"
                         android:textSize="14sp" />
 
                     <!-- Botón Editar Perfil -->
@@ -93,11 +93,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:background="@drawable/bg_rounded_button"
-                        android:backgroundTint="#881337"
+                        android:backgroundTint="@color/primary"
                         android:gravity="center"
                         android:paddingVertical="12dp"
                         android:text="@string/deck_button_edit"
-                        android:textColor="@color/white"
+                        android:textColor="@color/on_primary"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -106,7 +106,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
-                        app:cardBackgroundColor="#18181B"
+                        app:cardBackgroundColor="@color/background"
                         app:cardCornerRadius="16dp"
                         app:cardElevation="0dp">
 
@@ -121,7 +121,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/deck_title_teams"
-                                android:textColor="@color/white"
+                                android:textColor="@color/on_background"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
 

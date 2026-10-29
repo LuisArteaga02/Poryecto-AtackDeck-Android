@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121212"
+    android:background="@color/background"
     tools:context=".activity.PokemonDetailActivity">
 
     <androidx.core.widget.NestedScrollView
@@ -44,7 +44,6 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:text="@string/pokemonName"
-                android:textColor="#FFFFFF"
                 android:textSize="28sp"
                 android:textStyle="bold" />
             <TextView
@@ -54,7 +53,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/pokemon_label_number"
-                android:textColor="#cccccc"
+                android:textColor="@color/tertiary"
                 android:textSize="14sp" />
 
             <LinearLayout
@@ -101,7 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="@dimen/default_spacing"
-                android:background="#2A2A2A" />
+                android:background="@color/on_background" />
 
             <LinearLayout
                 android:id="@+id/layoutStats"
@@ -123,7 +122,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/pokemon_label_height"
-                        android:textColor="#9CA3AF"
+                        android:textColor="@color/tertiary"
                         android:textSize="12sp" />
                     <TextView
                         android:id="@+id/tvHeight"
@@ -131,7 +130,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="@string/pokemon_height_format"
-                        android:textColor="#FFFFFF"
                         android:textSize="22sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -152,7 +150,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/pokemon_label_weight"
-                        android:textColor="#9CA3AF"
+                        android:textColor="@color/tertiary"
                         android:textSize="12sp" />
                     <TextView
                         android:id="@+id/tvWeight"
@@ -160,7 +158,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="@string/pokemon_weight_format"
-                        android:textColor="#FFFFFF"
                         android:textSize="22sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -171,7 +168,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="@dimen/default_spacing"
-                android:background="#2A2A2A"
+                android:background="@color/on_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -199,15 +196,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/abilitiesTitle"
-                    android:textColor="#ffffff"
                     android:textSize="24sp"
+                    android:textStyle="bold"
                     android:layout_gravity="center" />
                 <TextView
                     android:id="@+id/tvAbility1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/value_placeholder"
-                    android:textColor="#ffffff"
                     android:layout_gravity="center" />
 
                 <TextView
@@ -215,7 +211,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/value_placeholder"
-                    android:textColor="#ffffff"
                     android:layout_gravity="center" />
 
                 <TextView
@@ -223,7 +218,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/value_placeholder"
-                    android:textColor="#ffffff"
                     android:layout_gravity="center" />
             </LinearLayout>
 
@@ -234,8 +228,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/default_spacing"
                 android:text="@string/baseStatsTitle"
-                android:textColor="#ffffff"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <GridLayout
                 android:id="@+id/layoutBaseStats"
@@ -468,7 +462,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/default_spacing"
                 android:text="@string/movesTitle"
-                android:textColor="#ffffff"
+                android:textColor="@color/on_background"
                 android:textSize="24sp" />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvMoves"
@@ -489,7 +483,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:background="@drawable/bg_rounded_button"
-        android:backgroundTint="#1A1921"
+        android:backgroundTint="@color/primary"
         android:drawablePadding="8dp"
         android:gravity="center"
         android:paddingHorizontal="16dp"
@@ -511,7 +505,7 @@
         android:layout_margin="12dp"
         android:src="@drawable/ic_add"
         android:background="@drawable/bg_rounded_button"
-        android:backgroundTint="#881337"
+        android:backgroundTint="@color/primary"
         android:contentDescription="@string/addToTeamHint"
         app:layout_constraintBottom_toTopOf="@id/includedBottomNav"
         app:layout_constraintEnd_toEndOf="parent" />

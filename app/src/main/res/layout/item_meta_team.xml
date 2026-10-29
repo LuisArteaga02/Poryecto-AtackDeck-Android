@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
-    app:cardBackgroundColor="#1A1921"
+    app:cardBackgroundColor="@color/secondary_variant"
     app:cardCornerRadius="16dp"
     app:cardElevation="0dp">
 
@@ -21,21 +21,16 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal">
-
             <TextView
                 android:id="@+id/tvTeamUser"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 tools:text="Vedant Max"
-                android:textColor="@color/white"
+                android:textColor="@color/on_secondary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-
-
-
             <!-- NUEVO: Botón para guardar este equipo en el perfil del usuario -->
-
         </LinearLayout>
 
         <!-- Contenedor horizontal para los 6 Pokémon -->
@@ -111,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/bg_rounded_button"
-                android:backgroundTint="#881337"
+                android:backgroundTint="@color/primary"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="6dp"
                 android:text="@string/action_save"

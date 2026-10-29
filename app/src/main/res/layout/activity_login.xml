@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0A0A0A"> <!-- Fondo negro superior -->
+    android:background="@color/background">
 
     <!-- Título Superior -->
     <TextView
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/login_title_welcome"
-        android:textColor="@color/white"
+        android:textColor="@color/on_background"
         android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,14 +28,16 @@
         android:src="@drawable/ic_search_pokemon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvWelcome" />
+        app:layout_constraintTop_toBottomOf="@id/tvWelcome"
+        app:tint="@color/on_background" />
 
-    <!-- Contenedor Inferior Gris Oscuro -->
+    <!-- Contenedor Inferior -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/bg_login_bottom"
+        android:backgroundTint="@color/secondary"
         android:orientation="vertical"
         android:paddingHorizontal="32dp"
         android:paddingTop="24dp"
@@ -48,7 +50,7 @@
             android:layout_marginBottom="24dp"
             android:gravity="center"
             android:text="@string/login_title_login"
-            android:textColor="@color/white"
+            android:textColor="@color/on_secondary"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -59,7 +61,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="8dp"
             android:text="@string/login_label_email"
-            android:textColor="@color/white"
+            android:textColor="@color/on_secondary"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -68,9 +70,10 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/bg_input_dark"
+            android:background="@drawable/bg_input"
+            android:backgroundTint="@color/secondary_variant"
             android:paddingHorizontal="16dp"
-            android:textColor="@color/white" />
+            android:textColor="@color/on_secondary" />
 
         <!-- Sección Password -->
         <TextView
@@ -79,7 +82,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="8dp"
             android:text="@string/login_label_password"
-            android:textColor="@color/white"
+            android:textColor="@color/on_secondary"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -88,10 +91,11 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginBottom="32dp"
-            android:background="@drawable/bg_input_dark"
+            android:background="@drawable/bg_input"
+            android:backgroundTint="@color/secondary_variant"
             android:inputType="textPassword"
             android:paddingHorizontal="16dp"
-            android:textColor="@color/white" />
+            android:textColor="@color/on_secondary" />
 
         <!-- Botón Login -->
         <Button
@@ -100,10 +104,11 @@
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/bg_button_dark"
+            android:background="@drawable/bg_button"
+            android:backgroundTint="@color/primary"
             android:text="@string/login_button_login"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/on_primary"
             android:textSize="16sp"
             android:textStyle="bold"
             app:backgroundTint="@null" />
@@ -115,7 +120,8 @@
             android:layout_height="55dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/bg_circle_dark"
+            android:background="@drawable/bg_circle"
+            android:backgroundTint="@color/background"
             android:contentDescription="@string/login_description_google"
             android:padding="12dp"
             android:scaleType="fitCenter"
@@ -127,10 +133,11 @@
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/bg_button_dark"
+            android:background="@drawable/bg_button"
+            android:backgroundTint="@color/primary"
             android:text="@string/login_button_signup"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/on_primary"
             android:textSize="16sp"
             android:textStyle="bold"
             app:backgroundTint="@null" />

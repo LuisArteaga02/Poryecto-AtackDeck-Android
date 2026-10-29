@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#121212"
+    android:background="@color/background"
     android:orientation="vertical"
     android:padding="20dp">
 
@@ -13,13 +13,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_rounded_button"
-        android:backgroundTint="#1A1921"
+        android:backgroundTint="@color/primary"
         android:drawablePadding="8dp"
         android:gravity="center"
         android:paddingHorizontal="16dp"
         android:paddingVertical="12dp"
         android:text="@string/action_back"
-        android:textColor="@color/white"
+        android:textColor="@color/on_primary"
         android:textSize="16sp"
 
         android:textStyle="bold"
@@ -37,7 +37,7 @@
         android:layout_marginBottom="16dp"
         android:text="@string/editteam_title"
         android:layout_marginTop="20dp"
-        android:textColor="@color/white"
+        android:textColor="@color/on_background"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -49,17 +49,18 @@
         android:layout_height="50dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/bg_rounded_item"
+        android:backgroundTint="@color/secondary_variant"
         android:hint="@string/editteam_hint_name"
         android:paddingHorizontal="16dp"
-        android:textColor="@color/white"
-        android:textColorHint="#9CA3AF" />
+        android:textColor="@color/on_secondary"
+        android:textColorHint="@color/tertiary" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="@string/editteam_label_help"
-        android:textColor="#9CA3AF"
+        android:textColor="@color/tertiary"
         android:textSize="14sp" />
 
     <!-- Lista de Pokémon -->
@@ -75,9 +76,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:backgroundTint="#881337"
+        android:backgroundTint="@color/primary"
         android:text="@string/action_save"
-        android:textColor="@color/white" />
+        android:textColor="@color/on_primary" />
 
 
 

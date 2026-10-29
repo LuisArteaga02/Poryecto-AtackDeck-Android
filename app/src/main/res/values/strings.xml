@@ -97,7 +97,7 @@
     <string name="editprofile_title_avatar">Change avatar</string>
     <string name="editprofile_label_username">Username</string>
     <string name="editprofile_label_nintendo">NintendoID</string>
-    <string name="editteam_title">Edit teamo</string>
+    <string name="editteam_title">Edit team</string>
     <string name="editteam_hint_name">Team name</string>
     <string name="editteam_label_help">Toca un Pokémon para eliminarlo del equipo:</string>
     <string name="login_title_welcome">Welcome to AtackDeck</string>
@@ -185,4 +185,5 @@
     <string name="team_msg_fail">Could not save team. Please try again.</string>
     <string name="ranking_description_pokemon">Meta Pokémon</string>
     <string name="genlist_title_generation">Generation %1$d</string>
+    <string name="main_button_help">\?</string>
 </resources>
